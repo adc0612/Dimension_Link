@@ -12,7 +12,7 @@ const storage = {
     }
 };
 const state = {
-    projectList: storage.fetch(),
+    sasCodeList: storage.fetch(),
     clusterList : [
         {
             id: "Cluster W",
@@ -101,13 +101,16 @@ const state = {
         id: "",
         addr: "",
     },
+    debugCode: "",
+    LanguageCode: "",
+    customOptCode: "",
     menuStatus: true,
     storageURLStatus: false
 };
 
 const getters = {
-    storedProjectList(state) {
-        return state.projectList;
+    storedSasCodeList(state) {
+        return state.sasCodeList;
     },
     getClusterList(state) {
         return state.clusterList;
@@ -150,35 +153,44 @@ const getters = {
     },
     getStorageURLStatus(state){
         return state.storageURLStatus;
-    }
+    },
+    getDebugCode(state){
+        return state.debugCode;
+    },
+    getLanguageCode(state) {
+        return state.LanguageCode;
+    },
+    getCustomOptCode(state){
+        return state.customOptCode;
+    },
 };
 
 const mutations = {
-    addOneItem(state, projectItem) {
+    addOneItem(state, sasCodeItem) {
         const obj = {
-            item: projectItem
+            item: sasCodeItem
         };
-        localStorage.setItem(projectItem, JSON.stringify(obj));
+        localStorage.setItem(sasCodeItem, JSON.stringify(obj));
         // this.todoItems.push(obj);
-        state.projectList.push(obj);
+        state.sasCodeList.push(obj);
     },
     //객체롤 넘기면 payload 선언해서 접근 해야한다.
     removeOneItem(state,payload) {
         // console.log(payload.index);
         // 여기서 todoItem이 todoItems배열에 키이므로 그걸 사용해 지운다.
-        localStorage.removeItem(payload.projectItem.item);
+        localStorage.removeItem(payload.sasCodeItem.item);
         //splice를 slice대신 쓰는 이유는 slice는 그냥 삭제만 하지만 splice는 삭제하고 새 배열을 다시 로드 해준다.
         // localstorage에서 삭제 했으면 todoItems에서도 삭제해줘야 한다.
         //key를 가지고 있는 index와 1을 넣어준다. 1은 하나만 지우라는 뜻이다.
-        state.projectList.splice(payload.index, 1);
+        state.sasCodeList.splice(payload.index, 1);
     },
 
     toggleOneItem(state, payload) {
-        state.projectList[payload.index].completed = !state.projectList[payload.index].completed
+        state.sasCodeList[payload.index].completed = !state.sasCodeList[payload.index].completed
         // todoItem.completed = !todoItem.completed;
-        localStorage.removeItem(payload.projectItem.item);
-        localStorage.setItem(payload.projectItem.item, JSON.stringify(payload.projectItem));
-        // console.log(payload.projectItem.completed);
+        localStorage.removeItem(payload.sasCodeItem.item);
+        localStorage.setItem(payload.sasCodeItem.item, JSON.stringify(payload.sasCodeItem));
+        // console.log(payload.sasCodeItem.completed);
     },
 
     clearAllItems(state) {

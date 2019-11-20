@@ -1,14 +1,20 @@
 <template>
   <div id="app">
     <InputForm></InputForm>
+    <SasCodeList v-show="false"></SasCodeList>
+    <MainSite></MainSite>
   </div>
 </template>
 
 <script>
 import InputForm from './components/InputForm.vue'
+import SasCodeList from './components/SasCodeList.vue'
+import MainSite from './components/MainSite.vue'
 export default {
  components: {
-      InputForm
+      InputForm,
+      SasCodeList,
+      MainSite
   }
 }
 </script>

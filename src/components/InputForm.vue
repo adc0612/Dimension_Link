@@ -9,30 +9,41 @@
           <div class="textFieldWrap">
 			<div class="item_wrap">
 				<span class="item_text">SAS CODE</span>
-				<input type="text" name="SASCODE" id="SASCODE">
+				<input type="text" v-model="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="addSasCode">
 			</div>
+            <Modal v-if="showModal" @close="showModal = false">
+                <h3 slot="header">
+                    Warning!
+                    <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+                </h3>
+                <div slot="body">
+                    <span v-if="modalTxt1">Please type SAS Code</span> 
+                    <span v-if="modalTxt2">Please select Cluster</span> 
+                    <span v-if="modalTxt3">Please select Gen Value</span> 
+                    <span v-if="modalTxt4">Please select Rs Value</span> 
+                </div>
+            </Modal>
 			<div class="item_wrap">
 				<span class="item_text">Job Number</span>
-				<input type="text" name="JOBNUM" id="JOBNUM">
+				<input type="text" v-model="jobNumberTxt" name="JOBNUM" id="JOBNUM">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Debug CODE</span>
-				<input type="text" name="DebugCode" id="DebugCode">
+				<input type="text" v-model="debugCodeTxt" name="DebugCode" id="DebugCode">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Language</span>
-				<input type="text" name="LanguageCode" id="LanguageCode" value="">
+				<input type="text" v-model="languageCodeTxt" name="LanguageCode" id="LanguageCode" value="">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Custom Option</span>
-				<input type="text" placeholder="Be sure to use '&'" name="COP" id="COP">
+				<input type="text" v-model="customOptTxt" placeholder="Be sure to use '&'" name="COP" id="COP">
 			</div>
           </div>
           <div class="select_wrap">
             <div class="select_box">
                 <v-select
-                label="name"
-                @input="changeWeek" 
+                label="id"
                 :options="clusterList"
                 :value="activeClusterObject" 
                 class="select_box"
@@ -40,17 +51,15 @@
             </div>
             <div class="select_box">
                 <v-select
-                label="name"
-                @input="changeWeek" 
+                label="id"
                 :options="genValList"
-                :value="activeGenValObject" 
+                :value="activeGenValObject"
                 class="select_box"
                 placeholder="Select a Gen Value"></v-select>
             </div> 
             <div class="select_box">
                 <v-select
-                label="name"
-                @input="changeWeek" 
+                label="id"
                 :options="rsValList"
                 :value="activeRsValObject" 
                 class="select_box"
@@ -62,8 +71,27 @@
 </template>
 
 <script>
-import {mapState, mapGetters, mapMutations} from 'vuex';
+import {mapState, mapGetters, mapMutations} from 'vuex';  
+import Modal from './common/modal.vue';
+
 export default {
+    data () {
+      return {
+        selectedVal: {
+            id:1
+        },
+        sasCodeTxt: "",
+        jobNumberTxt: "",
+        debugCodeTxt: "",
+        languageCodeTxt: "",
+        customOptTxt: "",
+        showModal: false,
+        modalTxt1: false,
+        modalTxt2: false,
+        modalTxt3: false,
+        modalTxt4: false,
+      }
+    },
     computed: {
         ...mapState ({
             activeClusterObject: 'activeCluster',
@@ -82,11 +110,67 @@ export default {
     methods: {
         ...mapMutations({
             // changeWeek: 'changeWeekFunc'
-        })
+        }),
+        addSasCode(){
+            // if (this.sasCodeTxt !== '') {
+            //     let text = this.sasCodeTxt.trim();
+            //     let n = text.length;
+            //     if (n>3 && n<16){
+            //         this.$store.commit('addOneItem',text);
+            //     }
+            //     this.clearInput();
+            // }else{
+            // this.showModal = !this.showModal;
+            // }
+            if (this.sasCodeTxt == '') {
+                this.showModal = !this.showModal;
+                this.modalTxt1 =true;
+                this.modalTxt2 =false;
+                this.modalTxt3 =false;
+                this.modalTxt4 =false;    
+            }else if (this.activeClusterObject == ''){
+                this.showModal = !this.showModal;
+                this.modalTxt1 =false;
+                this.modalTxt2 =true;
+                this.modalTxt3 =false;
+                this.modalTxt4 =false;  
+            }else if (this.activeGenValObject == ''){
+                this.showModal = !this.showModal;
+                this.modalTxt1 =false;
+                this.modalTxt2 =false;
+                this.modalTxt3 =true;
+                this.modalTxt4 =false;  
+            }else if (this.activeRsValObject == ''){
+                this.showModal = !this.showModal;
+                this.modalTxt1 =false;
+                this.modalTxt2 =false;
+                this.modalTxt3 =false;
+                this.modalTxt4 =true;  
+            }else{
+                let text = this.sasCodeTxt.trim();
+                let n = text.length;
+                if (n>3 && n<16){
+                    this.$store.commit('addOneItem',text);
+                }
+                this.clearInput();
+            }
+        },
+        clearInput () {
+            this.sasCodeTxt = '';
+        }
+    },
+    components: {
+      Modal
     }
 }
 </script>
 
 <style scoped>
-
+    .closeModalBtn{
+        float: right;
+    }
+    .closeModalBtn::after {
+    content: "";
+    clear: both;
+  }
 </style>
