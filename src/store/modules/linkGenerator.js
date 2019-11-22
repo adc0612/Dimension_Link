@@ -89,17 +89,17 @@ const state = {
         },
     ],
     activeCluster: {
-        id: "",
-        preview: "",
-        live: ""
+         id: "Cluster W",
+        preview: "https://t2-test.ktrmr.com/surveyw.aspx?",
+        live: "https://t2.ktrmr.com/surveyw.aspx?"
     },
     activeGenVal: {
-        id: "",
-        addr: "",
+        id: "Gen24",
+        addr: "Gen24",
     },
     activeRsVal: {
-        id: "",
-        addr: "",
+        id: "1",
+        addr: "1",
     },
     debugCode: "",
     LanguageCode: "",
@@ -207,6 +207,16 @@ const mutations = {
     
     changeStorageURLStatus(state) {
         state.storageURLStatus = !state.storageURLStatus;
+    },
+
+    setActiveCluster(state, cluster) {
+        state.activeCluster = cluster;
+    },
+    setActiveGenVal(state, genVal) {
+        state.activeGenVal = genVal;
+    },
+    setActiveRsVal(state, rsVal) {
+        state.activeRsVal  = rsVal;
     },
 };
 

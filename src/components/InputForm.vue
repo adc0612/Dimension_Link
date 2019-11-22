@@ -17,10 +17,7 @@
                     <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
                 </h3>
                 <div slot="body">
-                    <span v-if="modalTxt1">Please type SAS Code</span> 
-                    <span v-if="modalTxt2">Please select Cluster</span> 
-                    <span v-if="modalTxt3">Please select Gen Value</span> 
-                    <span v-if="modalTxt4">Please select Rs Value</span> 
+                    Please type SAS Code 
                 </div>
             </Modal>
 			<div class="item_wrap">
@@ -44,24 +41,27 @@
             <div class="select_box">
                 <v-select
                 label="id"
+                @input="setActiveCluster"
                 :options="clusterList"
-                :value="activeClusterObject" 
+                :value="activeCluster"
                 class="select_box"
                 placeholder="Select a Cluster Value"></v-select>
             </div>
             <div class="select_box">
                 <v-select
                 label="id"
+                @input="setActiveGenVal"
                 :options="genValList"
-                :value="activeGenValObject"
+                :value="activeGenVal"
                 class="select_box"
                 placeholder="Select a Gen Value"></v-select>
             </div> 
             <div class="select_box">
                 <v-select
                 label="id"
+                @input="setActiveRsVal"
                 :options="rsValList"
-                :value="activeRsValObject" 
+                :value="activeRsVal" 
                 class="select_box"
                 placeholder="Select a Rs Value"></v-select>
             </div> 
@@ -77,26 +77,19 @@ import Modal from './common/modal.vue';
 export default {
     data () {
       return {
-        selectedVal: {
-            id:1
-        },
         sasCodeTxt: "",
         jobNumberTxt: "",
         debugCodeTxt: "",
         languageCodeTxt: "",
         customOptTxt: "",
         showModal: false,
-        modalTxt1: false,
-        modalTxt2: false,
-        modalTxt3: false,
-        modalTxt4: false,
       }
     },
     computed: {
         ...mapState ({
             activeClusterObject: 'activeCluster',
             activeGenValObject: 'activeGenVal',
-            activeRsValObject: 'activRsVal',
+            activeRsValObject: 'activeRsVal',
             }),
         ...mapGetters({
             clusterList: 'getClusterList',
@@ -109,7 +102,9 @@ export default {
     },
     methods: {
         ...mapMutations({
-            // changeWeek: 'changeWeekFunc'
+            setActiveCluster: 'setActiveCluster',
+            setActiveGenVal: 'setActiveGenVal',
+            setActiveRsVal: 'setActiveRsVal'
         }),
         addSasCode(){
             // if (this.sasCodeTxt !== '') {
@@ -124,28 +119,7 @@ export default {
             // }
             if (this.sasCodeTxt == '') {
                 this.showModal = !this.showModal;
-                this.modalTxt1 =true;
-                this.modalTxt2 =false;
-                this.modalTxt3 =false;
-                this.modalTxt4 =false;    
-            }else if (this.activeClusterObject == ''){
-                this.showModal = !this.showModal;
-                this.modalTxt1 =false;
-                this.modalTxt2 =true;
-                this.modalTxt3 =false;
-                this.modalTxt4 =false;  
-            }else if (this.activeGenValObject == ''){
-                this.showModal = !this.showModal;
-                this.modalTxt1 =false;
-                this.modalTxt2 =false;
-                this.modalTxt3 =true;
-                this.modalTxt4 =false;  
-            }else if (this.activeRsValObject == ''){
-                this.showModal = !this.showModal;
-                this.modalTxt1 =false;
-                this.modalTxt2 =false;
-                this.modalTxt3 =false;
-                this.modalTxt4 =true;  
+                
             }else{
                 let text = this.sasCodeTxt.trim();
                 let n = text.length;
