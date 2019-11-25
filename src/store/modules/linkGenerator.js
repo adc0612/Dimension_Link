@@ -101,6 +101,7 @@ const state = {
         id: "1",
         addr: "1",
     },
+    sasCode: "",
     debugCode: "",
     LanguageCode: "",
     customOptCode: "",
@@ -217,6 +218,18 @@ const mutations = {
     },
     setActiveRsVal(state, rsVal) {
         state.activeRsVal  = rsVal;
+    },
+    setSasCode(state, sasCode) {
+        state.sasCode  = sasCode;
+    },
+    setDebugCode(state, debugCode) {
+        state.debugCode  = debugCode;
+    },
+    setLanguageCode(state, languageCode) {
+        state.languageCode  = languageCode;
+    },
+    setCustomOptCode(state, customOptCode) {
+        state.customOptCode  = customOptCode;
     },
 };
 

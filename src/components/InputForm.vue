@@ -66,6 +66,9 @@
                 placeholder="Select a Rs Value"></v-select>
             </div> 
           </div>
+          <div class="submit_but_wrap">
+              <button>Submit</button>
+          </div>
     </div>
   </div>
 </template>
@@ -107,7 +110,6 @@ export default {
             setActiveRsVal: 'setActiveRsVal'
         }),
         addSasCode(){
-            // if (this.sasCodeTxt !== '') {
             //     let text = this.sasCodeTxt.trim();
             //     let n = text.length;
             //     if (n>3 && n<16){
@@ -131,6 +133,26 @@ export default {
         },
         clearInput () {
             this.sasCodeTxt = '';
+        },
+        submitForm(){
+            if (this.sasCodeTxt == '') {
+                this.showModal = !this.showModal;
+            }else{
+                let sasCode = this.sasCodeTxt.trim();
+                let debugCode = this.debugCodeTxt.trim();
+                let languageCode = this.languageCodeTxt.trim();
+                let customOptCode = this.customOptTxt.trim();
+                let sasCodeLeng = text.length;
+                if (this.debugCodeTxt == ''){
+                    this.debugCodeTxt = 5
+                }else{
+                    
+                }
+                if (sasCodeLeng>3 && sasCodeLeng<16){
+                    this.$store.commit('addOneItem',sasCode);
+                }
+                this.clearInput();
+            }
         }
     },
     components: {
