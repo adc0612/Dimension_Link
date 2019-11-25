@@ -43,6 +43,26 @@ const state = {
             addr: "Gen27",
         },
         {
+            id: "Gen28",
+            addr: "Gen28",
+        },
+        {
+            id: "Gen29",
+            addr: "Gen29",
+        },
+        {
+            id: "Gen30",
+            addr: "Gen30",
+        },
+        {
+            id: "Gen31",
+            addr: "Gen31",
+        },
+        {
+            id: "Gen32",
+            addr: "Gen32",
+        },
+        {
             id: "Gmi29",
             addr: "Gmi29",
         },
@@ -102,6 +122,7 @@ const state = {
         addr: "1",
     },
     sasCode: "",
+    jobNumCode: "",
     debugCode: "",
     LanguageCode: "",
     customOptCode: "",
@@ -154,6 +175,9 @@ const getters = {
     },
     getStorageURLStatus(state){
         return state.storageURLStatus;
+    },
+    getJobNumCode(state){
+        return state.jobNumCode;
     },
     getDebugCode(state){
         return state.debugCode;
@@ -221,6 +245,9 @@ const mutations = {
     },
     setSasCode(state, sasCode) {
         state.sasCode  = sasCode;
+    },
+    setJobNumCode(state, jobNumCode) {
+        state.jobNumCode = jobNumCode;
     },
     setDebugCode(state, debugCode) {
         state.debugCode  = debugCode;

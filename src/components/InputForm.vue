@@ -9,7 +9,7 @@
           <div class="textFieldWrap">
 			<div class="item_wrap">
 				<span class="item_text">SAS CODE</span>
-				<input type="text" v-model="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="addSasCode">
+				<input type="text" v-model="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm">
 			</div>
             <Modal v-if="showModal" @close="showModal = false">
                 <h3 slot="header">
@@ -17,16 +17,17 @@
                     <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
                 </h3>
                 <div slot="body">
-                    Please type SAS Code 
+                    <span v-show="modaltxt1">Please type SAS Code </span>
+                    <span v-show="modaltxt2">Debug code should be in numeric</span>
                 </div>
             </Modal>
 			<div class="item_wrap">
 				<span class="item_text">Job Number</span>
-				<input type="text" v-model="jobNumberTxt" name="JOBNUM" id="JOBNUM">
+				<input type="text" v-model="jobNumTxt" name="JOBNUM" id="JOBNUM">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Debug CODE</span>
-				<input type="text" v-model="debugCodeTxt" name="DebugCode" id="DebugCode">
+				<input type="number" v-model="debugCodeTxt" name="DebugCode" id="DebugCode">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Language</span>
@@ -81,11 +82,13 @@ export default {
     data () {
       return {
         sasCodeTxt: "",
-        jobNumberTxt: "",
+        jobNumTxt: "",
         debugCodeTxt: "",
         languageCodeTxt: "",
         customOptTxt: "",
         showModal: false,
+        modaltxt1: true,
+        modaltxt2: false,
       }
     },
     computed: {
@@ -120,8 +123,9 @@ export default {
             // this.showModal = !this.showModal;
             // }
             if (this.sasCodeTxt == '') {
+                this.modaltext1 = true;
+                this.modaltext2 = false;
                 this.showModal = !this.showModal;
-                
             }else{
                 let text = this.sasCodeTxt.trim();
                 let n = text.length;
@@ -133,24 +137,49 @@ export default {
         },
         clearInput () {
             this.sasCodeTxt = '';
+            this.jobNumTxt = '';
+            this.debugCodeTxt = '';
+            this.languageCodeTxt = '';
+            this.customOptTxt = '';
         },
         submitForm(){
+            let sasCode = this.sasCodeTxt.trim();
+            let jobNumCode = this.jobNumTxt.trim();
+            let debugCode = this.debugCodeTxt.trim();
+            let languageCode = this.languageCodeTxt.trim();
+            let customOptCode = this.customOptTxt.trim();
             if (this.sasCodeTxt == '') {
+                this.modaltext1 = true;
+                this.modaltext2 = false;
+                this.showModal = !this.showModal;
+            }else if(this.debugCodeTxt == '') {
+                this.modaltext1 = false;
+                this.modaltext2 = true;
                 this.showModal = !this.showModal;
             }else{
-                let sasCode = this.sasCodeTxt.trim();
-                let debugCode = this.debugCodeTxt.trim();
-                let languageCode = this.languageCodeTxt.trim();
-                let customOptCode = this.customOptTxt.trim();
-                let sasCodeLeng = text.length;
-                if (this.debugCodeTxt == ''){
-                    this.debugCodeTxt = 5
+                
+                let sasCodeLeng = sasCode.length;
+
+                if (debugCode == ''){
+                    debugCode = 5
+                    this.$store.commit('setDebugCode',debugCode)
                 }else{
-                    
+                    this.$store.commit('setDebugCode',debugCode)
+                }
+                if (languageCode != ''){
+                    languageCode = "&lang=" + languageCode;
+                }
+                if (customOptCode != ''){
+                    customOptCode = "&"+ customOptCode;
                 }
                 if (sasCodeLeng>3 && sasCodeLeng<16){
                     this.$store.commit('addOneItem',sasCode);
                 }
+                this.$store.commit('setSasCode',sasCode);
+                this.$store.commit('setJobNumCode',jobNumCode);
+                this.$store.commit('setDebugCode',debugCode);
+                this.$store.commit('setLanguageCode',languageCode);
+                this.$store.commit('setCustomOptCode',customOptCode);
                 this.clearInput();
             }
         }
