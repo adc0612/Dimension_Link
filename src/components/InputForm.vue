@@ -31,23 +31,23 @@
             </Modal>
 			<div class="item_wrap">
 				<span class="item_text">Job Number</span>
-				<input type="text" v-model="jobNumTxt" name="JOBNUM" id="JOBNUM">
+				<input type="text" v-model="jobNumTxt" name="JOBNUM" id="JOBNUM" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Debug CODE</span>
-				<input type="number" v-model="debugCodeTxt" name="DebugCode" id="DebugCode">
+				<input type="number" v-model="debugCodeTxt" name="DebugCode" id="DebugCode" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Language</span>
-				<input type="text" v-model="languageCodeTxt" name="LanguageCode" id="LanguageCode" value="">
+				<input type="text" v-model="languageCodeTxt" name="LanguageCode" id="LanguageCode" value="" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Custom Option</span>
-				<input type="text" v-model="customOptTxt" name="COP" id="COP">
+				<input type="text" v-model="customOptTxt" name="COP" id="COP" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Test ID</span>
-				<input type="text" v-model="testIDCodeTxt" name="testID" id="testID">
+				<input type="text" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
 			</div>
           </div>
           <div class="select_wrap">
@@ -89,7 +89,7 @@
             </div> 
           </div>
           <div class="submit_but_wrap">
-              <button>Submit</button>
+              <button v-on:click="submitForm">Submit</button>
           </div>
     </div>
   </div>
