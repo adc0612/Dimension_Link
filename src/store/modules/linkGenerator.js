@@ -18,11 +18,15 @@ const state = {
             id: "Cluster W",
             preview: "https://t2-test.ktrmr.com/surveyw.aspx?",
             live: "https://t2.ktrmr.com/surveyw.aspx?",
+            previewNet: "https://livew.ktrmr.com/",
+            liveNet: "https://livew.ktrmr.com/",
         },
         {
             id: "Cluster Z",
             preview: "https://ts-preview.ktrmr.com/surveyz.aspx?",
             live: "https://ts.ktrmr.com/surveyz.aspx?",
+            previewNet: "https://livez.ktrmr.com/",
+            liveNet: "https://livez.ktrmr.com/",
         },
     ],
     genValList : [
@@ -77,6 +81,18 @@ const state = {
             addr: "0"
         },
     ],
+    scriptingServerList: [
+        {
+            id: "WIN-CPEQHJJ1I36",
+            jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
+            scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
+        },
+        {
+            id: "WIN-ORVIQIAUF0Q",
+            jobBuilderAddr: "https://scripting601-aw2b.grpitsrv.com/JobBuilder/",
+            scriptingAddr: "https://scripting601-aw2b.grpitsrv.com/mrIWeb/mrIweb.dll?",
+        },
+    ],
     fTPBtns: [
         {
             id: 1,
@@ -92,12 +108,12 @@ const state = {
     debugBtns: [
         {
             id: 1,
-            value: '\\\\WIN-CPEQHJJ1I36\\mrint\\src\\',
+            value: '\\mrint\\src\\',
             name: 'Ouput Location',
         },
         {
             id: 2,
-            value: '\\\\WIN-CPEQHJJ1I36\\mrint\\AutoActivate.bat ',
+            value: '\\mrint\\AutoActivate.bat ',
             name: 'Activation',
         }
     ],
@@ -111,7 +127,9 @@ const state = {
     activeCluster: {
          id: "Cluster W",
         preview: "https://t2-test.ktrmr.com/surveyw.aspx?",
-        live: "https://t2.ktrmr.com/surveyw.aspx?"
+        live: "https://t2.ktrmr.com/surveyw.aspx?",
+        previewNet: "https://livew.ktrmr.com/",
+        liveNet: "https://livew.ktrmr.com/",
     },
     activeGenVal: {
         id: "Gen24",
@@ -121,11 +139,17 @@ const state = {
         id: "1",
         addr: "1",
     },
+    activeScriptingServer: {
+        id: "WIN-CPEQHJJ1I36",
+        jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
+        scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
+    },
     sasCode: "",
     jobNumCode: "",
     debugCode: "",
-    LanguageCode: "",
+    languageCode: "",
     customOptCode: "",
+    testIDCode: "",
     menuStatus: true,
     storageURLStatus: false
 };
@@ -143,6 +167,9 @@ const getters = {
     getRsValList(state) {
         return state.rsValList;
     },
+    getScriptingServerList(state) {
+        return state.scriptingServerList;
+    },
     getActiveCluster(state) {
         return state.activeCluster;
     },
@@ -152,14 +179,8 @@ const getters = {
     getActiveRsVal(state) {
         return state.activeRsVal;
     },
-    defaultClusterSet(state){
-        state.selectedCountry = state.clusterList[0];
-    },
-    defaultGenValSet(state) {
-        state.selectedWeek = state.genValList[0];
-    },
-    defaultRsValSet(state) {
-        state.selectedWeek = state.rsValList[0];
+    getActiveScriptingServer(state) {
+        return state.activeScriptingServer;
     },
     getMenuStatus(state){
         return state.menuStatus;
@@ -176,6 +197,10 @@ const getters = {
     getStorageURLStatus(state){
         return state.storageURLStatus;
     },
+
+    getSASCode(state){
+        return state.sasCode;
+    },
     getJobNumCode(state){
         return state.jobNumCode;
     },
@@ -183,10 +208,13 @@ const getters = {
         return state.debugCode;
     },
     getLanguageCode(state) {
-        return state.LanguageCode;
+        return state.languageCode;
     },
     getCustomOptCode(state){
         return state.customOptCode;
+    },
+    getTestIDCode(state){
+        return state.testIDCode;
     },
 };
 
@@ -243,6 +271,9 @@ const mutations = {
     setActiveRsVal(state, rsVal) {
         state.activeRsVal  = rsVal;
     },
+    setActiveScriptingServer(state, scriptingServer) {
+        state.activeScriptingServer = scriptingServer;
+    },
     setSasCode(state, sasCode) {
         state.sasCode  = sasCode;
     },
@@ -257,6 +288,9 @@ const mutations = {
     },
     setCustomOptCode(state, customOptCode) {
         state.customOptCode  = customOptCode;
+    },
+    setTestIDCode(state, testIDCode) {
+        state.customOptCode = testIDCode;
     },
 };
 

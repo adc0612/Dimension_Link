@@ -11,14 +11,22 @@
 				<span class="item_text">SAS CODE</span>
 				<input type="text" v-model="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm">
 			</div>
-            <Modal v-if="showModal" @close="showModal = false">
+            <Modal v-if="showModalSas" @close="showModalSas = false">
                 <h3 slot="header">
                     Warning!
-                    <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+                    <i class="closeModalBtn fas fa-times" @click="showModalSas = false"></i>
                 </h3>
                 <div slot="body">
-                    <span v-show="modaltxt1">Please type SAS Code </span>
-                    <span v-show="modaltxt2">Debug code should be in numeric</span>
+                    Please type SAS Code
+                </div>
+            </Modal>
+            <Modal v-if="showModalDebug" @close="showModalDebug = false">
+                <h3 slot="header">
+                    Warning!
+                    <i class="closeModalBtn fas fa-times" @click="showModalDebug = false"></i>
+                </h3>
+                <div slot="body">
+                    Debug code should be in numeric
                 </div>
             </Modal>
 			<div class="item_wrap">
@@ -35,7 +43,11 @@
 			</div>
 			<div class="item_wrap">
 				<span class="item_text">Custom Option</span>
-				<input type="text" v-model="customOptTxt" placeholder="Be sure to use '&'" name="COP" id="COP">
+				<input type="text" v-model="customOptTxt" name="COP" id="COP">
+			</div>
+			<div class="item_wrap">
+				<span class="item_text">Test ID</span>
+				<input type="text" v-model="testIDCodeTxt" name="testID" id="testID">
 			</div>
           </div>
           <div class="select_wrap">
@@ -66,6 +78,15 @@
                 class="select_box"
                 placeholder="Select a Rs Value"></v-select>
             </div> 
+            <div class="select_box">
+                <v-select
+                label="id"
+                @input="setActiveScriptingServer"
+                :options="scriptingServerList"
+                :value="activeScriptingServer" 
+                class="select_box"
+                placeholder="Select a Scripting Server"></v-select>
+            </div> 
           </div>
           <div class="submit_but_wrap">
               <button>Submit</button>
@@ -86,31 +107,35 @@ export default {
         debugCodeTxt: "",
         languageCodeTxt: "",
         customOptTxt: "",
-        showModal: false,
-        modaltxt1: true,
-        modaltxt2: false,
+        testIDCodeTxt: "",
+        showModalSas: false,
+        showModalDebug: false,
+        regex: /[0-9]+/,
       }
     },
     computed: {
         ...mapState ({
-            activeClusterObject: 'activeCluster',
-            activeGenValObject: 'activeGenVal',
-            activeRsValObject: 'activeRsVal',
+            // activeClusterObject: 'activeCluster',
+            // activeGenValObject: 'activeGenVal',
+            // activeRsValObject: 'activeRsVal',
             }),
         ...mapGetters({
             clusterList: 'getClusterList',
             genValList: 'getGenValList',
             rsValList: 'getRsValList',
+            scriptingServerList: 'getScriptingServerList',
             activeCluster: 'getActiveCluster',
             activeGenVal: 'getActiveGenVal',
             activeRsVal: 'getActiveRsVal',
+            activeScriptingServer: 'getActiveScriptingServer',
             })
     },
     methods: {
         ...mapMutations({
             setActiveCluster: 'setActiveCluster',
             setActiveGenVal: 'setActiveGenVal',
-            setActiveRsVal: 'setActiveRsVal'
+            setActiveRsVal: 'setActiveRsVal',
+            setActiveScriptingServer: 'setActiveScriptingServer',
         }),
         addSasCode(){
             //     let text = this.sasCodeTxt.trim();
@@ -123,9 +148,7 @@ export default {
             // this.showModal = !this.showModal;
             // }
             if (this.sasCodeTxt == '') {
-                this.modaltext1 = true;
-                this.modaltext2 = false;
-                this.showModal = !this.showModal;
+                this.showModalSas = !this.showModalSas;
             }else{
                 let text = this.sasCodeTxt.trim();
                 let n = text.length;
@@ -141,6 +164,7 @@ export default {
             this.debugCodeTxt = '';
             this.languageCodeTxt = '';
             this.customOptTxt = '';
+            this.testIDCodeTxt = '';
         },
         submitForm(){
             let sasCode = this.sasCodeTxt.trim();
@@ -148,18 +172,13 @@ export default {
             let debugCode = this.debugCodeTxt.trim();
             let languageCode = this.languageCodeTxt.trim();
             let customOptCode = this.customOptTxt.trim();
+            let testIDCode = this.testIDCodeTxt.trim();
             if (this.sasCodeTxt == '') {
-                this.modaltext1 = true;
-                this.modaltext2 = false;
-                this.showModal = !this.showModal;
-            }else if(this.debugCodeTxt == '') {
-                this.modaltext1 = false;
-                this.modaltext2 = true;
-                this.showModal = !this.showModal;
+                this.showModalSas = !this.showModalSas;
+            }else if( (debugCode != '') && (!this.regex.test(this.debugCodeTxt))) {
+                this.showModalDebug = !this.showModalDebug;
             }else{
-                
                 let sasCodeLeng = sasCode.length;
-
                 if (debugCode == ''){
                     debugCode = 5
                     this.$store.commit('setDebugCode',debugCode)
@@ -172,16 +191,28 @@ export default {
                 if (customOptCode != ''){
                     customOptCode = "&"+ customOptCode;
                 }
+                if (testIDCode == ''){
+                    testIDCode = "{패널ID}";
+                }
                 if (sasCodeLeng>3 && sasCodeLeng<16){
                     this.$store.commit('addOneItem',sasCode);
                 }
-                this.$store.commit('setSasCode',sasCode);
-                this.$store.commit('setJobNumCode',jobNumCode);
-                this.$store.commit('setDebugCode',debugCode);
-                this.$store.commit('setLanguageCode',languageCode);
-                this.$store.commit('setCustomOptCode',customOptCode);
+                this.submitFunc(sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode);
+            //      this.$store.commit('setSasCode',sasCode);
+            // this.$store.commit('setJobNumCode',jobNumCode);
+            // this.$store.commit('setDebugCode',debugCode);
+            // this.$store.commit('setLanguageCode',languageCode);
+            // this.$store.commit('setCustomOptCode',customOptCode);
                 this.clearInput();
             }
+        },
+        submitFunc(sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode){
+            this.$store.commit('setSasCode',sasCode);
+            this.$store.commit('setJobNumCode',jobNumCode);
+            this.$store.commit('setDebugCode',debugCode);
+            this.$store.commit('setLanguageCode',languageCode);
+            this.$store.commit('setCustomOptCode',customOptCode);
+            this.$store.commit('setTestIDCode',testIDCode);
         }
     },
     components: {
