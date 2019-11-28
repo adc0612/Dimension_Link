@@ -198,12 +198,7 @@ export default {
                     this.$store.commit('addOneItem',sasCode);
                 }
                 this.submitFunc(sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode);
-            //      this.$store.commit('setSasCode',sasCode);
-            // this.$store.commit('setJobNumCode',jobNumCode);
-            // this.$store.commit('setDebugCode',debugCode);
-            // this.$store.commit('setLanguageCode',languageCode);
-            // this.$store.commit('setCustomOptCode',customOptCode);
-                this.clearInput();
+                // this.clearInput();
             }
         },
         submitFunc(sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode){

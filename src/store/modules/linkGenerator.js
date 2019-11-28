@@ -86,11 +86,14 @@ const state = {
             id: "WIN-CPEQHJJ1I36",
             jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
             scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
+            scriptingNet: "https://scripting601-aw2a.grpitsrv.com/",
         },
         {
             id: "WIN-ORVIQIAUF0Q",
             jobBuilderAddr: "https://scripting601-aw2b.grpitsrv.com/JobBuilder/",
             scriptingAddr: "https://scripting601-aw2b.grpitsrv.com/mrIWeb/mrIweb.dll?",
+            scriptingNet: "https://scripting601-aw2b.grpitsrv.com/",
+
         },
     ],
     fTPBtns: [
@@ -110,11 +113,14 @@ const state = {
             id: 1,
             value: '\\mrint\\src\\',
             name: 'Ouput Location',
+            urlAddr: '"\\\\"+activeScriptingServer.id+item.value',
         },
         {
             id: 2,
             value: '\\mrint\\AutoActivate.bat ',
             name: 'Activation',
+            urlAddr: '"\\\\"+activeScriptingServer.id+item.value',
+
         }
     ],
     extractorBtn: [
@@ -143,6 +149,8 @@ const state = {
         id: "WIN-CPEQHJJ1I36",
         jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
         scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
+        scriptingNet: "https://scripting601-aw2a.grpitsrv.com/",
+
     },
     sasCode: "",
     jobNumCode: "",

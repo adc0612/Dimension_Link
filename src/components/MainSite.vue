@@ -27,11 +27,34 @@
           </a>
         </div>
       </div>
+
       <div class="compile_addr_wrap">
-        <h2>Compile Address</h2>
+        <h2>Compile & Data output Address</h2>
         <div class="compile_addr_box" v-for="(item) in this.debugBtnList" v-bind:key="item.id">
           <h3>{{item.name}}</h3>
-          <span class="compile_addr">{{"\\\\"+activeScriptingServer.id+item.value}}</span>
+          <span class="compile_addr">{{"\\\\"+activeScriptingServer.id+item.value+activeSASCode}}</span>
+        </div>
+        <div class="compile_addr_box">
+          <h3>Data Output Address</h3>
+          <a class="compile_addr" target="_blank" :href="'\\\\kt.group.local\\ko_dimensions\\CFS2\\DPAT_Output_NA\\'+activeSASCode">
+            {{"\\\\kt.group.local\\ko_dimensions\\CFS2\\DPAT_Output_NA\\"+activeSASCode}}
+          </a>
+        </div>
+      </div>
+
+      <div class="dimensionNet_addr_wrap">
+        <h2>Dimension Net URL</h2>
+        <div class="dimensionNet_addr_box">
+          <h3>Dimension Net - Scripting</h3>
+          <a class="dimensionNet_addr" target="_blank" :href="activeScriptingServer.scriptingNet">{{activeScriptingServer.scriptingNet}}</a>
+        </div>
+        <div class="dimensionNet_addr_box">
+          <h3>Dimension Net - Preview</h3>
+          <a class="dimensionNet_addr" target="_blank" :href="activeCluster.previewNet">{{activeCluster.previewNet}}</a>
+        </div>
+        <div class="dimensionNet_addr_box">
+          <h3>Dimension Net - Live</h3>
+          <a class="dimensionNet_addr" target="_blank" :href="activeCluster.liveNet">{{activeCluster.liveNet}}</a>
         </div>
       </div>
   </div>
