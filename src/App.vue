@@ -1,20 +1,26 @@
 <template>
   <div id="app">
-    <InputForm></InputForm>
-    <SasCodeList v-show="false"></SasCodeList>
     <MainSite></MainSite>
+    <!-- <InputForm></InputForm>
+    <SasCodeList></SasCodeList>
+    <UsefulLinkList></UsefulLinkList>
+    <ReferenceList></ReferenceList> -->
   </div>
 </template>
 
 <script>
-import InputForm from './components/InputForm.vue'
-import SasCodeList from './components/SasCodeList.vue'
 import MainSite from './components/MainSite.vue'
+// import InputForm from './components/InputForm.vue'
+// import SasCodeList from './components/SasCodeList.vue'
+// import UsefulLinkList from './components/UsefulLinkList.vue'
+// import ReferenceList from './components/ReferenceList.vue'
 export default {
  components: {
-      InputForm,
-      SasCodeList,
-      MainSite
+    MainSite,
+    // InputForm,
+    // SasCodeList,
+    // UsefulLinkList,
+    // ReferenceList
   }
 }
 </script>
@@ -55,7 +61,7 @@ select,
 table,
 textarea {
   font-size: 14px;
-  font-family: ubuntu, HelveticaNeue, AppleSDGothicNeo-Regular, Dotum, '돋움', sans-serif;
+  font-family: sans-serif, ubuntu, HelveticaNeue, AppleSDGothicNeo-Regular, Dotum, '돋움';
 }
 
 button,

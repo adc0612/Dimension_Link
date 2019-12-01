@@ -93,7 +93,6 @@ const state = {
             jobBuilderAddr: "https://scripting601-aw2b.grpitsrv.com/JobBuilder/",
             scriptingAddr: "https://scripting601-aw2b.grpitsrv.com/mrIWeb/mrIweb.dll?",
             scriptingNet: "https://scripting601-aw2b.grpitsrv.com/",
-
         },
     ],
     fTPBtns: [
@@ -127,8 +126,95 @@ const state = {
         {
             id: 1,
             value: '\\\\kt.group.local\\ko_dimensions\\CFS2\\DPAT_Output_NA\\',
-            name: 'Extrator File',
+            name: 'Extractor File',
         },
+    ],
+    usefulServerLinkList: [
+        {
+            id: 'slink1',
+            value: 'JobBuilder/',
+            name: 'Job Builder URL'
+        },
+        {
+            id: 'slink2',
+            value: 'mrIWeb/images/default.asp',
+            name: 'Survey Link URL'
+        }
+    ],
+    usefulLinkList: [
+        {
+            id: 'link1',
+            value: 'https://extractor-client-prod.azurewebsites.net/',
+            name: 'Extractor URL'
+        },
+        {
+            id: 'link2',
+            value: 'http://citrixwebus.grpitsrv.com/Citrix/XenApp/auth/login.aspx',
+            name: 'Citrix URL'
+        },
+        {
+            id: 'link3',
+            value: 'https://reg1.ktrmr.com/Registrar/Login/Default.aspx?',
+            name: 'Registrar URL'
+        },
+        {
+            id: 'link4',
+            value: 'https://kgo-support.freshdesk.com/support/home',
+            name: 'KGO Support URL'
+        },
+        {
+            id: 'link5',
+            value: 'https://konnect.kantaroperations.com',
+            name: 'Kantar Konnect URL'
+        },
+    ],
+    referenceList: [
+        {
+            id: '1',
+            name: 'project',
+            value: 'Project id mdd filename(ex: AD42GZ)',
+        },
+        {
+            id: '2',
+            name: 's',
+            value: '샘플 provider(GEN24,GMI29...)',
+        },
+        {
+            id: '3',
+            name: 'pid',
+            value: '패널id, 임의부여(usally: auto)',
+        },
+        {
+            id: '4',
+            name: 'rs',
+            value: '재시작 가능여부(1: 가능)',
+        },
+        {
+            id: '5',
+            name: 'i.test',
+            value: '링크에 “i.test=1” 안붙이면 Real respondent',
+        },
+        {
+            id: '6',
+            name: 'debug=5',
+            value: '디버그모드',
+        },
+        {
+            id: '7',
+            name: 'i.timeout=0',
+            value: '재접속 제한시간을 없애줌',
+        },
+        {
+            id: '8',
+            name: 'aar=1',
+            value: 'if you pass value “aar = 1 then you don’t need to wait for 10 minutes',
+        },
+        {
+            id: '9',
+            name: 'http protocall',
+            value: 'secs.aspx : https, 	surbeys.aspx : http (usally used)',
+        },
+        
     ],
     activeCluster: {
          id: "Cluster W",
@@ -158,6 +244,11 @@ const state = {
     languageCode: "",
     customOptCode: "",
     testIDCode: "",
+
+    inputFormStatus: true,
+    referenceListStatus: false,
+    sasCodeListStatus: false,
+    usefulLinkListStatus: false,
     menuStatus: true,
     storageURLStatus: false
 };
@@ -224,83 +315,159 @@ const getters = {
     getTestIDCode(state){
         return state.testIDCode;
     },
+
+    getUsefulServerLinkList(state){
+        return state.usefulServerLinkList;
+    },
+    getUsefulLinkList(state){
+        return state.usefulLinkList;
+    },
+    getReferenceList(state){
+        return state.referenceList;
+    },
+
+    getInputFormStatus(state) {
+        return state.inputFormStatus;
+    },
+    getReferenceListStatus(state) {
+        return state.referenceListStatus;
+    },
+    getSasCodeListStatus(state) {
+        return state.sasCodeListStatus;
+    },
+    getUsefulLinkListStatus(state) {
+        return state.usefulLinkListStatus;
+    },
 };
 
 const mutations = {
-    addOneItem(state, sasCodeItem) {
-        const obj = {
-            item: sasCodeItem
-        };
-        localStorage.setItem(sasCodeItem, JSON.stringify(obj));
-        // this.todoItems.push(obj);
-        state.sasCodeList.push(obj);
-    },
-    //객체롤 넘기면 payload 선언해서 접근 해야한다.
-    removeOneItem(state,payload) {
-        // console.log(payload.index);
-        // 여기서 todoItem이 todoItems배열에 키이므로 그걸 사용해 지운다.
-        localStorage.removeItem(payload.sasCodeItem.item);
-        //splice를 slice대신 쓰는 이유는 slice는 그냥 삭제만 하지만 splice는 삭제하고 새 배열을 다시 로드 해준다.
-        // localstorage에서 삭제 했으면 todoItems에서도 삭제해줘야 한다.
-        //key를 가지고 있는 index와 1을 넣어준다. 1은 하나만 지우라는 뜻이다.
-        state.sasCodeList.splice(payload.index, 1);
-    },
+//   addOneItem(state, sasCodeItem) {
+//     const obj = {
+//       item: sasCodeItem
+//     };
+//     localStorage.setItem(sasCodeItem, JSON.stringify(obj));
+//     // this.todoItems.push(obj);
+//     state.sasCodeList.push(obj);
+//   },
+  addOneItem(state, {sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode}) {
+    console.log(sasCode);
+    console.log(jobNumCode);
+    console.log(debugCode);
+    console.log(languageCode);
+    console.log(customOptCode);
+    const obj = {
+      item: sasCode,
+      jobNumCode: jobNumCode,
+      debugCode: debugCode,
+      languageCode: languageCode,
+      customOptCode: customOptCode,
+      testIDCode: testIDCode,
+      activeCluster: state.activeCluster,
+      activeGenVal: state.activeGenVal,
+      activeRsVal: state.activeRsVal,
+      activeScriptingServer: state.activeScriptingServer,
+    };
+    localStorage.setItem(sasCode, JSON.stringify(obj));
+    // this.todoItems.push(obj);
+    state.sasCodeList.push(obj);
+  },
+  //객체롤 넘기면 payload 선언해서 접근 해야한다.
+  removeOneItem(state, payload) {
+    // console.log(payload.index);
+    // 여기서 todoItem이 todoItems배열에 키이므로 그걸 사용해 지운다.
+    localStorage.removeItem(payload.sasCodeItem.item);
+    //splice를 slice대신 쓰는 이유는 slice는 그냥 삭제만 하지만 splice는 삭제하고 새 배열을 다시 로드 해준다.
+    // localstorage에서 삭제 했으면 todoItems에서도 삭제해줘야 한다.
+    //key를 가지고 있는 index와 1을 넣어준다. 1은 하나만 지우라는 뜻이다.
+    state.sasCodeList.splice(payload.index, 1);
+  },
 
-    toggleOneItem(state, payload) {
-        state.sasCodeList[payload.index].completed = !state.sasCodeList[payload.index].completed
-        // todoItem.completed = !todoItem.completed;
-        localStorage.removeItem(payload.sasCodeItem.item);
-        localStorage.setItem(payload.sasCodeItem.item, JSON.stringify(payload.sasCodeItem));
-        // console.log(payload.sasCodeItem.completed);
-    },
+  loadOneSascode(state, payload) {
+      console.log(payload.sasCodeItem.item);
+      console.log(payload.sasCodeItem.activeCluster);
+      let tempSasCode = payload.sasCodeItem.item;
+      let tempJobNumCode = payload.sasCodeItem.jobNumCode;
+      let tempDebugCode = payload.sasCodeItem.debugCode;
+      let tempLanguageCode = payload.sasCodeItem.languageCode;
+      let tempCustomOptCode = payload.sasCodeItem.customOptCode;
+      let tempTestIDCode = payload.sasCodeItem.testIDCode;
+      let tempActiveCluster = payload.sasCodeItem.activeCluster;  
+      let tempActiveGenVal = payload.sasCodeItem.activeGenVal;  
+      let tempActiveRsVal = payload.sasCodeItem.activeRsVal;  
+      let tempActiveScriptingServer = payload.sasCodeItem.activeScriptingServer;  
+      console.log(tempActiveScriptingServer);
+      state.sasCode = tempSasCode;
+      state.jobNumCode = tempJobNumCode;
+      state.debugCode = tempDebugCode;
+      state.languageCode = tempLanguageCode;
+      state.customOptCode = tempCustomOptCode;
+      state.languageCode = tempTestIDCode;
+      state.activeCluster = tempActiveCluster;  
+      state.activeGenVal = tempActiveGenVal;  
+      state.activeRsVal = tempActiveRsVal;  
+      state.activeScriptingServer = tempActiveScriptingServer;  
+  },
+  clearAllItems(state) {
+    localStorage.clear();
+    state.pro = [];
+  },
+  changeMenuStatus(state) {
+    state.menuStatus = !state.menuStatus;
+  },
 
-    clearAllItems(state) {
-        localStorage.clear();
-        state.pro = [];
-    },
-    changeCountryFunc(state, payload) {
-        state.selectedCountry = payload.country;
-        state.menuStatus = !state.menuStatus;
-    },
-    changeMenuStatus(state){
-        state.menuStatus = !state.menuStatus;
-    },
-    
-    changeStorageURLStatus(state) {
-        state.storageURLStatus = !state.storageURLStatus;
-    },
+  changeStorageURLStatus(state) {
+    state.storageURLStatus = !state.storageURLStatus;
+  },
 
-    setActiveCluster(state, cluster) {
-        state.activeCluster = cluster;
-    },
-    setActiveGenVal(state, genVal) {
-        state.activeGenVal = genVal;
-    },
-    setActiveRsVal(state, rsVal) {
-        state.activeRsVal  = rsVal;
-    },
-    setActiveScriptingServer(state, scriptingServer) {
-        state.activeScriptingServer = scriptingServer;
-    },
-    setSasCode(state, sasCode) {
-        state.sasCode  = sasCode;
-    },
-    setJobNumCode(state, jobNumCode) {
-        state.jobNumCode = jobNumCode;
-    },
-    setDebugCode(state, debugCode) {
-        state.debugCode  = debugCode;
-    },
-    setLanguageCode(state, languageCode) {
-        state.languageCode  = languageCode;
-    },
-    setCustomOptCode(state, customOptCode) {
-        state.customOptCode  = customOptCode;
-    },
-    setTestIDCode(state, testIDCode) {
-        state.customOptCode = testIDCode;
-    },
+  setActiveCluster(state, cluster) {
+    state.activeCluster = cluster;
+    // setClusterFunc(state,cluster);
+  },
+  setActiveGenVal(state, genVal) {
+    state.activeGenVal = genVal;
+  },
+  setActiveRsVal(state, rsVal) {
+    state.activeRsVal = rsVal;
+  },
+  setActiveScriptingServer(state, scriptingServer) {
+    state.activeScriptingServer = scriptingServer;
+  },
+  setSasCode(state, sasCode) {
+    state.sasCode = sasCode;
+  },
+  setJobNumCode(state, jobNumCode) {
+    state.jobNumCode = jobNumCode;
+  },
+  setDebugCode(state, debugCode) {
+    state.debugCode = debugCode;
+  },
+  setLanguageCode(state, languageCode) {
+    state.languageCode = languageCode;
+  },
+  setCustomOptCode(state, customOptCode) {
+    state.customOptCode = customOptCode;
+  },
+  setTestIDCode(state, testIDCode) {
+    state.testIDCode = testIDCode;
+  },
+
+  changeInputFormStatus(state) {
+      state.inputFormStatus = !state.inputFormStatus;
+  },
+  changeReferenceListStatus(state) {
+      state.referenceListStatus = !state.referenceListStatus;
+  },
+  changeSasCodeListStatus(state) {
+      state.sasCodeListStatus = !state.sasCodeListStatus;
+  },
+  changeUsefulLinkListStatus(state) {
+      state.usefulLinkListStatus = !state.usefulLinkListStatus;
+  },
 };
+
+// function setClusterFunc(state,cluster){
+//     state.activeCluster = cluster;
+// }
 
 export default {
     state,

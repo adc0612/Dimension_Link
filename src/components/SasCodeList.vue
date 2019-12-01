@@ -1,8 +1,10 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" class="shadow">
-        <span>{{sasCodeItem.item}}</span>
+      <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="shadow">
+        <span>
+          {{sasCodeItem.item}}
+        </span>
         <span class="removeBtn" v-on:click="removeTodo({sasCodeItem,index})">
           <i class="fas fa-trash-alt"></i>
         </span>
@@ -18,7 +20,8 @@ export default {
     ...mapMutations({
       //mutation 적용 후 전달되는인자가 하나여야하고 하나이면 인자를 안 써줘도 자동으로 입력된다.
       removeTodo: 'removeOneItem',
-      toggleComplete: 'toggleOneItem'
+      toggleComplete: 'toggleOneItem',
+      loadOneSascode: 'loadOneSascode',
     }),
     //vuex mutaions 전 코드
     // removeTodo(sasCodeItem, index) {

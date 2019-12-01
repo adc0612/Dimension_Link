@@ -1,15 +1,15 @@
 <template>
-  <div class="input_form_wrap">
+  <div>
       <div class="input_form_box">
           <div class="header_wrap">
-            <p class="header_text">Samsung Campaign<br>Test Page</p>
-            <!-- <p class="header_text"></p> -->
-            <p class="week_select_header">Select Week</p>
+            <h1 class="header_txt">Dimension Link</h1>
+            <!-- <p class="info_txt">Type SAS Code to start</p> -->
           </div>
           <div class="textFieldWrap">
-			<div class="item_wrap">
-				<span class="item_text">SAS CODE</span>
-				<input type="text" v-model="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm">
+			<div class="item_wrap" :class="{focus: focusState}">
+				<label for="sasCode" class="item_text">SAS CODE</label>
+				<input type="text" @focus="focusState=true" @blur="focusState=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+				<!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
 			</div>
             <Modal v-if="showModalSas" @close="showModalSas = false">
                 <h3 slot="header">
@@ -29,24 +29,24 @@
                     Debug code should be in numeric
                 </div>
             </Modal>
-			<div class="item_wrap">
-				<span class="item_text">Job Number</span>
-				<input type="text" v-model="jobNumTxt" name="JOBNUM" id="JOBNUM" v-on:keyup.enter="submitForm">
+			<div class="item_wrap" :class="{focus: focusState}">
+				<label for="jobNum" class="item_text">Job Number</label>
+				<input type="text" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
-				<span class="item_text">Debug CODE</span>
-				<input type="number" v-model="debugCodeTxt" name="DebugCode" id="DebugCode" v-on:keyup.enter="submitForm">
+				<label for="debugCode" class="item_text">Debug CODE</label>
+				<input type="text" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
-				<span class="item_text">Language</span>
-				<input type="text" v-model="languageCodeTxt" name="LanguageCode" id="LanguageCode" value="" v-on:keyup.enter="submitForm">
+				<label for="languageCode" class="item_text">Language</label>
+				<input type="text" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
-				<span class="item_text">Custom Option</span>
-				<input type="text" v-model="customOptTxt" name="COP" id="COP" v-on:keyup.enter="submitForm">
+				<label for="customOpt" class="item_text">Custom Option</label>
+				<input type="text" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap">
-				<span class="item_text">Test ID</span>
+				<label for="testID" class="item_text">Test ID</label>
 				<input type="text" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
 			</div>
           </div>
@@ -108,9 +108,12 @@ export default {
         languageCodeTxt: "",
         customOptTxt: "",
         testIDCodeTxt: "",
+        clusterVal: "",
         showModalSas: false,
         showModalDebug: false,
         regex: /[0-9]+/,
+
+        focusState: false,
       }
     },
     computed: {
@@ -118,6 +121,7 @@ export default {
             // activeClusterObject: 'activeCluster',
             // activeGenValObject: 'activeGenVal',
             // activeRsValObject: 'activeRsVal',
+                // sasCodeTxt: 'sasCode',
             }),
         ...mapGetters({
             clusterList: 'getClusterList',
@@ -128,7 +132,19 @@ export default {
             activeGenVal: 'getActiveGenVal',
             activeRsVal: 'getActiveRsVal',
             activeScriptingServer: 'getActiveScriptingServer',
-            })
+
+            activeSasCode: 'getSASCode',
+            }),
+        
+        // sasCodeTxt:{
+        //     get (){
+        //         return this.$store.state.sasCode
+        //     },
+        //     set (value) {
+        //         this.$store.commit('setSasCode',value);
+        //     }
+        // }
+        
     },
     methods: {
         ...mapMutations({
@@ -137,27 +153,6 @@ export default {
             setActiveRsVal: 'setActiveRsVal',
             setActiveScriptingServer: 'setActiveScriptingServer',
         }),
-        addSasCode(){
-            //     let text = this.sasCodeTxt.trim();
-            //     let n = text.length;
-            //     if (n>3 && n<16){
-            //         this.$store.commit('addOneItem',text);
-            //     }
-            //     this.clearInput();
-            // }else{
-            // this.showModal = !this.showModal;
-            // }
-            if (this.sasCodeTxt == '') {
-                this.showModalSas = !this.showModalSas;
-            }else{
-                let text = this.sasCodeTxt.trim();
-                let n = text.length;
-                if (n>3 && n<16){
-                    this.$store.commit('addOneItem',text);
-                }
-                this.clearInput();
-            }
-        },
         clearInput () {
             this.sasCodeTxt = '';
             this.jobNumTxt = '';
@@ -167,6 +162,7 @@ export default {
             this.testIDCodeTxt = '';
         },
         submitForm(){
+            console.log(this.sasCodeTxt);
             let sasCode = this.sasCodeTxt.trim();
             let jobNumCode = this.jobNumTxt.trim();
             let debugCode = this.debugCodeTxt.trim();
@@ -195,7 +191,7 @@ export default {
                     testIDCode = "{패널ID}";
                 }
                 if (sasCodeLeng>3 && sasCodeLeng<16){
-                    this.$store.commit('addOneItem',sasCode);
+                    this.$store.commit('addOneItem',{sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode});
                 }
                 this.submitFunc(sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode);
                 // this.clearInput();
@@ -217,11 +213,38 @@ export default {
 </script>
 
 <style scoped>
+    .input_form_box {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 500px;
+        height: 550px;
+        padding: 60px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background: #fff;
+        opacity: 0.9;
+        /* background: url("../assets/img/woodPatern.png"); */
+    }
+    .item_wrap.focus > label{
+        color:blue;
+    }
     .closeModalBtn{
         float: right;
     }
     .closeModalBtn::after {
-    content: "";
-    clear: both;
-  }
+        content: "";
+        clear: both;
+    }
+    .header_txt{
+        color:#1428a0;
+        font-size: 35px;
+    }
+    .header_wrap{
+        margin-bottom: 20px;
+    }
 </style>
