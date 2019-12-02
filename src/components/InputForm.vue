@@ -6,9 +6,9 @@
             <!-- <p class="info_txt">Type SAS Code to start</p> -->
           </div>
           <div class="textFieldWrap">
-			<div class="item_wrap" :class="{focus: focusState}">
+			<div class="item_wrap" :class="{focus: focusState1}">
 				<label for="sasCode" class="item_text">SAS CODE</label>
-				<input type="text" @focus="focusState=true" @blur="focusState=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
 				<!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
 			</div>
             <Modal v-if="showModalSas" @close="showModalSas = false">
@@ -29,25 +29,25 @@
                     Debug code should be in numeric
                 </div>
             </Modal>
-			<div class="item_wrap" :class="{focus: focusState}">
+			<div class="item_wrap" :class="{focus: focusState2}">
 				<label for="jobNum" class="item_text">Job Number</label>
-				<input type="text" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap">
+			<div class="item_wrap" :class="{focus: focusState3}">
 				<label for="debugCode" class="item_text">Debug CODE</label>
-				<input type="text" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap">
+			<div class="item_wrap" :class="{focus: focusState4}">
 				<label for="languageCode" class="item_text">Language</label>
-				<input type="text" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap">
+			<div class="item_wrap" :class="{focus: focusState5}">
 				<label for="customOpt" class="item_text">Custom Option</label>
-				<input type="text" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap">
+			<div class="item_wrap" :class="{focus: focusState6}">
 				<label for="testID" class="item_text">Test ID</label>
-				<input type="text" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+				<input type="text" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
 			</div>
           </div>
           <div class="select_wrap">
@@ -113,7 +113,12 @@ export default {
         showModalDebug: false,
         regex: /[0-9]+/,
 
-        focusState: false,
+        focusState1: false,
+        focusState2: false,
+        focusState3: false,
+        focusState4: false,
+        focusState5: false,
+        focusState6: false,
       }
     },
     computed: {
@@ -220,18 +225,68 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
-        width: 500px;
-        height: 550px;
-        padding: 60px;
+        max-width: 500px;
+        min-width: 300px;
+        height: 650px;
+        padding: 50px 60px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
         border-radius: 10px;
         background: #fff;
-        opacity: 0.9;
         /* background: url("../assets/img/woodPatern.png"); */
     }
+    .item_wrap{
+        display: block;
+        position: relative;
+        z-index: 1;
+        margin: 1.5em 0;
+    }
+    .item_wrap > label{
+        position: absolute;
+        top: -3px;
+        left: auto;
+        max-width: 100%;
+        height: 2.7em;
+        line-height: 2.7em;
+        color: #767676;
+        font-size: 1.142em;
+        cursor: text;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        z-index: -1;
+        pointer-events: none;
+        -webkit-font-smoothing: antialiased;
+        -webkit-transform: translate3d(0, 3px, 0) scale(1);
+        transform: translate3d(0, 3px, 0) scale(1);
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+    }
+    .item_wrap > input{
+        display: block;
+        width: 100%;
+        color:#000;
+        border: none;
+        border-bottom-color: currentcolor;
+        border-bottom-style: none;
+        border-bottom-width: medium;
+        border-bottom: 1px solid#DDD;
+        background-color:transparent;
+        box-sizing: border-box;
+        height: 2.7em;
+        line-height: 1.2;
+        font-size: 1.142em;
+    }
     .item_wrap.focus > label{
-        color:blue;
+        top: -1.9em;
+    left: auto;
+    font-size: 0.875em;
+        color:#138c6f;
+    }
+    .select_box{
+        margin:1em 0;
     }
     .closeModalBtn{
         float: right;
@@ -241,7 +296,7 @@ export default {
         clear: both;
     }
     .header_txt{
-        color:#1428a0;
+        color:#138c6f;
         font-size: 35px;
     }
     .header_wrap{
