@@ -6,9 +6,9 @@
             <!-- <p class="info_txt">Type SAS Code to start</p> -->
           </div>
           <div class="textFieldWrap">
-			<div class="item_wrap" :class="{focus: focusState1}">
+			<div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
 				<label for="sasCode" class="item_text">SAS CODE</label>
-				<input type="text" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
 				<!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
 			</div>
             <Modal v-if="showModalSas" @close="showModalSas = false">
@@ -29,25 +29,25 @@
                     Debug code should be in numeric
                 </div>
             </Modal>
-			<div class="item_wrap" :class="{focus: focusState2}">
+			<div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
 				<label for="jobNum" class="item_text">Job Number</label>
-				<input type="text" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap" :class="{focus: focusState3}">
+			<div class="item_wrap" :class="{focus: focusState3, active: activeState3}">
 				<label for="debugCode" class="item_text">Debug CODE</label>
-				<input type="text" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState3=true" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap" :class="{focus: focusState4}">
+			<div class="item_wrap" :class="{focus: focusState4, active: activeState4}">
 				<label for="languageCode" class="item_text">Language</label>
-				<input type="text" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState4=true" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap" :class="{focus: focusState5}">
+			<div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
 				<label for="customOpt" class="item_text">Custom Option</label>
-				<input type="text" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState5=true" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
 			</div>
-			<div class="item_wrap" :class="{focus: focusState6}">
+			<div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
 				<label for="testID" class="item_text">Test ID</label>
-				<input type="text" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeState6=true" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
 			</div>
           </div>
           <div class="select_wrap">
@@ -119,6 +119,12 @@ export default {
         focusState4: false,
         focusState5: false,
         focusState6: false,
+        activeState1: false,
+        activeState2: false,
+        activeState3: false,
+        activeState4: false,
+        activeState5: false,
+        activeState6: false,
       }
     },
     computed: {
@@ -281,8 +287,14 @@ export default {
     }
     .item_wrap.focus > label{
         top: -1.9em;
-    left: auto;
-    font-size: 0.875em;
+        left: auto;
+        font-size: 0.875em;
+        color:#138c6f;
+    }
+    .item_wrap.active > label{
+        top: -1.9em;
+        left: auto;
+        font-size: 0.875em;
         color:#138c6f;
     }
     .select_box{
@@ -297,9 +309,61 @@ export default {
     }
     .header_txt{
         color:#138c6f;
-        font-size: 35px;
+        font-size: 1.7rem;
     }
     .header_wrap{
         margin-bottom: 20px;
+    }
+    .submit_but_wrap{
+        text-align: center;
+        margin: 1.5rem 0;
+    }
+    .submit_but_wrap > button{
+        border: 2px solid #000;
+        color: #000;
+        min-width: 270px;
+        max-width: 270px;
+        min-height: 3.125em;
+        min-width: 180px;
+        padding: .5em 1.5em;
+        background: transparent;
+        border-radius: .5em;
+        font-weight: bold;
+        font-size: 1em;
+        line-height: 1.2;
+        letter-spacing: .01em;
+        word-break: break-all;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: middle;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        text-align: center;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-decoration: none;
+    }
+    .submit_but_wrap > button:hover{
+        border: 2px solid #138c6f;
+        color: #138c6f;
+    }
+    @media only screen and (max-width: 450px) {
+
+        .input_form_box{
+            height: auto;
+            padding: 20px;
+        }
+        .item_wrap{
+            margin: 0.8rem 0;
+        }
+        .item_wrap > label{
+            font-size: 1rem;
+        }
     }
 </style>
