@@ -8,7 +8,8 @@
           <div class="textFieldWrap">
 			<div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
 				<label for="sasCode" class="item_text">SAS CODE</label>
-				<input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+				<!-- <input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
+				<input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
 				<!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
 			</div>
             <Modal v-if="showModalSas" @close="showModalSas = false">
@@ -31,23 +32,24 @@
             </Modal>
 			<div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
 				<label for="jobNum" class="item_text">Job Number</label>
-				<input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
+				<!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
+				<input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap" :class="{focus: focusState3, active: activeState3}">
 				<label for="debugCode" class="item_text">Debug CODE</label>
-				<input type="text" @input="activeState3=true" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeFunc" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap" :class="{focus: focusState4, active: activeState4}">
 				<label for="languageCode" class="item_text">Language</label>
-				<input type="text" @input="activeState4=true" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
 				<label for="customOpt" class="item_text">Custom Option</label>
-				<input type="text" @input="activeState5=true" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
 			</div>
 			<div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
 				<label for="testID" class="item_text">Test ID</label>
-				<input type="text" @input="activeState6=true" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+				<input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
 			</div>
           </div>
           <div class="select_wrap">
@@ -163,6 +165,7 @@ export default {
             setActiveGenVal: 'setActiveGenVal',
             setActiveRsVal: 'setActiveRsVal',
             setActiveScriptingServer: 'setActiveScriptingServer',
+            // changeInputFormStatus: 'changeInputFormStatus',
         }),
         clearInput () {
             this.sasCodeTxt = '';
@@ -215,6 +218,39 @@ export default {
             this.$store.commit('setLanguageCode',languageCode);
             this.$store.commit('setCustomOptCode',customOptCode);
             this.$store.commit('setTestIDCode',testIDCode);
+            this.$store.commit('changeInputFormStatus');
+        },
+        activeFunc(){
+            if (this.sasCodeTxt ==''){
+                this.activeState1 = false;
+            }else{
+                this.activeState1 = true;
+            }
+            if (this.jobNumTxt ==''){
+                this.activeState2 = false;
+            }else{
+                this.activeState2 = true;
+            }
+            if (this.debugCodeTxt ==''){
+                this.activeState3 = false;
+            }else{
+                this.activeState3 = true;
+            }
+            if (this.languageCodeTxt ==''){
+                this.activeState4 = false;
+            }else{
+                this.activeState4 = true;
+            }
+            if (this.customOptTxt ==''){
+                this.activeState5 = false;
+            }else{
+                this.activeState5 = true;
+            }
+            if (this.testIDCodeTxt ==''){
+                this.activeState6 = false;
+            }else{
+                this.activeState6 = true;
+            }
         }
     },
     components: {
