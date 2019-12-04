@@ -4,24 +4,32 @@
       <h2>Server Address</h2>
       <div class="server_addr_box">
         <h3>Scripting Link</h3>
-        <a class="server_addr" target="_blank" :href="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode">
-          {{activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode}}
-        </a>
+        <div class="inner_box">
+          <a class="server_addr" target="_blank" :href="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode">
+            {{activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode}}
+          </a>
+        </div>
       </div>
       <div class="server_addr_box">
         <h3>Preview Link</h3>
-        <a class="server_addr" target="_blank" :href="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode">
-          {{activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode}}
-        </a>
+        <div class="inner_box">
+            <a class="server_addr" target="_blank" :href="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode">
+            {{activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode}}
+            </a>
+        </div>
       </div>
       <div class="server_addr_box">
         <h3>Live Test Link</h3>
+        <div class="inner_box">
         <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode">
           {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode}}
         </a>
+          
+        </div>
       </div>
       <div class="server_addr_box">
         <h3>Live Link</h3>
+        <div class="inner_box"></div>
         <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode">
           {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode}}
         </a>
@@ -103,6 +111,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .mainLinkList_wrap{
+    padding: 20px 30px;
+  }
 
 </style>
