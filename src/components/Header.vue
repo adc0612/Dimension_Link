@@ -106,9 +106,9 @@ export default {
   }
   .active_val_wrap > span{
     font-size: 0.9rem;
-    color:#4b8274;
+    color:#f2be23;
     margin-right: 10px;
-
+    font-weight: 700;
   }
   /* @media only screen and (max-width: 700px) {
     .menu_btn{

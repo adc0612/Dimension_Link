@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
     <Header class="header_wrap"></Header>
-    <InputForm class="inputForm_wrap" v-show="false" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
+    <InputForm class="inputForm_wrap" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
     <SasCodeList class="sasCodeList_wrap" v-show="false" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
-    <ReferenceList class="referenceList_wrap" v-show="false" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
+    <ReferenceList class="referenceList_wrap" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
     <UsefulLinkList class="usefulLinkList_wrap" v-show="false" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
     <MainLinkList class="mainLinkList_wrap shadow"></MainLinkList>
   </div>
@@ -51,9 +51,11 @@ export default {
     margin: 0 auto;
   }
   .inputForm_wrap::before{
-        position: absolute;
+        position: fixed;
         top: 0;
+        bottom: 0;
         left: 0;
+        right: 0;
         width: 100%;
         height: 100%;
         background-color:#000;
