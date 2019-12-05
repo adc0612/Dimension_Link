@@ -2,9 +2,9 @@
   <div class="wrap">
     <Header class="header_wrap"></Header>
     <InputForm class="inputForm_wrap" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
-    <SasCodeList class="sasCodeList_wrap" v-show="false" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
     <ReferenceList class="referenceList_wrap" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
     <UsefulLinkList class="usefulLinkList_wrap" v-show="false" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
+    <SasCodeList class="sasCodeList_wrap" v-show="false" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
     <MainLinkList class="mainLinkList_wrap shadow"></MainLinkList>
   </div>
 </template>
@@ -13,8 +13,8 @@
 import Header from './Header'
 import InputForm from './InputForm'
 import ReferenceList from './ReferenceList'
-import SasCodeList from './SasCodeList'
 import UsefulLinkList from './UsefulLinkList'
+import SasCodeList from './SasCodeList'
 import MainLinkList from './MainLinkList'
 import {mapGetters, mapMutations} from 'vuex';  
 export default {
@@ -37,8 +37,8 @@ export default {
       Header,
       InputForm,
       ReferenceList,
-      SasCodeList,
       UsefulLinkList,
+      SasCodeList,
       MainLinkList,
     }
 }
@@ -50,7 +50,7 @@ export default {
     min-width: 700px;
     margin: 0 auto;
   }
-  .inputForm_wrap::before{
+  .inputForm_wrap::before, .referenceList_wrap::before{
         position: fixed;
         top: 0;
         bottom: 0;

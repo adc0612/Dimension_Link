@@ -12,6 +12,7 @@
         <span>{{activeGenVal.id}}</span>
         <span>{{activeScriptingServer.id}}</span>
       </div>
+      
       <!-- <i class="fas fa-arrow-circle-left back_btn"></i> -->
     </div>
   </div>
@@ -76,6 +77,8 @@ export default {
     color: rgb(117, 117, 117);
     top: 0;
     right:110px;
+      cursor: pointer;
+
   }
   .link_btn{
     position: absolute;
@@ -85,6 +88,8 @@ export default {
     color: rgb(117, 117, 117);
     top: 0;
     right: 55px;
+      cursor: pointer;
+
   }
   .back_btn{
     position: absolute;
@@ -94,6 +99,8 @@ export default {
     color: rgb(117, 117, 117);
     top: 0;
     right: 5px;
+      cursor: pointer;
+
   }
   .header_box::after {
     content: "";
