@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
     <Header class="header_wrap"></Header>
-    <InputForm class="inputForm_wrap" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
-    <ReferenceList class="referenceList_wrap" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
-    <UsefulLinkList class="usefulLinkList_wrap" v-show="false" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
+    <InputForm class="inputForm_wrap" v-show="false" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
+    <ReferenceList class="referenceList_wrap" v-show="false" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
+    <UsefulLinkList class="usefulLinkList_wrap" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
     <SasCodeList class="sasCodeList_wrap" v-show="false" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
     <MainLinkList class="mainLinkList_wrap shadow"></MainLinkList>
   </div>
