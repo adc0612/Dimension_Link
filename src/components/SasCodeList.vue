@@ -1,15 +1,18 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="shadow">
+      <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="list_item shadow">
         <span>
           {{sasCodeItem.item}}
         </span>
         <span class="removeBtn" v-on:click="removeTodo({sasCodeItem,index})">
-          <i class="fas fa-trash-alt"></i>
+          <i class="fas fa-trash-alt" title="Delete"></i>
         </span>
       </li>
     </transition-group>
+    <div class="clearAllbtn_box"  v-on:click="clearTodo" title="Delete All">
+      <span class="clearAllBtn">Clear All</span>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ export default {
       removeTodo: 'removeOneItem',
       toggleComplete: 'toggleOneItem',
       loadOneSascode: 'loadOneSascode',
+      clearTodo: 'clearAllItems',
     }),
     //vuex mutaions 전 코드
     // removeTodo(sasCodeItem, index) {
@@ -56,10 +60,27 @@ li {
   padding: 0 0.9rem;
   background: #fff;
   border-radius: 5px;
+  cursor: pointer;
 }
+.clearAllbtn_box{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 1.1rem;
+  background-color:#f46f6f;
+  color: #fff;
+  cursor: pointer;
+}
+
 .removeBtn {
   margin-left: auto;
   color: #de4343;
+  cursor: pointer;
 }
 .checkBtn {
   line-height: 45px;

@@ -1,10 +1,10 @@
 <template>
   <div class="wrap">
     <Header class="header_wrap"></Header>
-    <InputForm class="inputForm_wrap" v-show="false" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
-    <ReferenceList class="referenceList_wrap" v-show="false" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
-    <UsefulLinkList class="usefulLinkList_wrap" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
-    <SasCodeList class="sasCodeList_wrap" v-show="false" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
+    <InputForm class="inputForm_wrap" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
+    <ReferenceList class="referenceList_wrap" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
+    <UsefulLinkList class="usefulLinkList_wrap"  :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
+    <SasCodeList class="sasCodeList_wrap" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
     <MainLinkList class="mainLinkList_wrap shadow"></MainLinkList>
   </div>
 </template>
@@ -47,10 +47,23 @@ export default {
 <style scoped>
   .wrap{
     max-width: 1100px;
-    min-width: 700px;
+    min-width: 500px;
     margin: 0 auto;
   }
-  .inputForm_wrap::before, .referenceList_wrap::before{
+  .header_wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 99;
+    background-color:#fff;
+  }
+  .mainLinkList_wrap{
+    padding: 20px 30px;
+    margin-top: 70px;
+  }
+  .inputForm_wrap::before, .referenceList_wrap::before, .usefulLinkList_wrap::before{
         position: fixed;
         top: 0;
         bottom: 0;
@@ -61,8 +74,22 @@ export default {
         background-color:#000;
         content: '';
         opacity: 0.9;
+        z-index: 99;
     }
-    
+  .sasCodeList_wrap{
+    width: 280px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+    z-index:99;
+    background-color:#fff;
+  }  
   .inputForm_wrap, .sasCodeList_wrap, .referenceList_wrap, .usefulLinkList_wrap{
     visibility: visible;
     opacity: 1;
@@ -71,5 +98,16 @@ export default {
   .inputForm_wrap_hd, .sasCodeList_wrap_hd, .referenceList_wrap_hd, .usefulLinkList_wrap_hd{
       visibility: hidden;
       opacity: 0;
+      z-index:0;
+  }
+  
+
+  @media only screen and (max-width: 450px) {
+      .wrap{
+        min-width: 300px;
+      }
+      .sasCodeListStatus{
+        width: 70%;
+      }
     }
 </style>

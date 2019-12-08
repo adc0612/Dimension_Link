@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="reference_box">
-      <i class="fas fa-times refer_btn" @click="changeReferenceListStatus"></i>
+      <i class="fas fa-times close_btn" @click="changeReferenceListStatus"></i>
       <h2>Reference</h2>
       <table class="reference_table">
         <tr class="reference_list" v-for="(item) in referenceList" v-bind:key="item.id">
@@ -24,24 +24,26 @@ export default {
         ...mapGetters({
                 referenceList: 'getReferenceList',
             }),
-        ...mapMutations({
-               changeReferenceListStatus: 'changeReferenceListStatus',
-
+        
+  },
+  methods: {
+    ...mapMutations({
+        changeReferenceListStatus: 'changeReferenceListStatus',
 
         }),
-    },
+  }
 }
 </script>
 
 <style scoped>
-  .refer_btn{
+  .close_btn{
     position: absolute;
     font-size: 25px;
     padding: 0 10px;
     line-height: 50px;
     color: rgb(117, 117, 117);
     right:60px;
-      cursor: pointer;
+    cursor: pointer;
 
   }
   .reference_box {
@@ -59,6 +61,8 @@ export default {
         -moz-border-radius: 10px;
         border-radius: 10px;
         background: #fff;
+        z-index: 99;
+
         /* background: url("../assets/img/woodPatern.png"); */
     }
     .reference_box > h2{

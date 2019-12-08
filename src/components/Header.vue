@@ -123,4 +123,29 @@ export default {
       visibility: visible;
     }
   } */
+  @media only screen and (max-width: 450px) {
+      .header_title{
+        font-size: 1.2rem;
+        margin-right: 60px;
+      }
+      .active_val_wrap>span{
+        font-size: 0.7rem;
+      }
+      .menu_btn{
+        font-size: 25px;
+      }
+      .refer_btn{
+        font-size: 20px;
+        right: 85px;
+        padding: 0;
+      }
+      .link_btn{
+        font-size: 20px;
+        right: 50px;
+        padding: 0;
+      }
+      .back_btn{
+        font-size: 20px;
+      }
+    }
 </style>

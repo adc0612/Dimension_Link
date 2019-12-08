@@ -135,11 +135,11 @@ const state = {
             value: 'JobBuilder/',
             name: 'Job Builder URL'
         },
-        {
-            id: 'slink2',
-            value: 'mrIWeb/images/default.asp',
-            name: 'Survey Link URL'
-        }
+        // {
+        //     id: 'slink2',
+        //     value: 'mrIWeb/images/default.asp',
+        //     name: 'Survey Link URL'
+        // }
     ],
     usefulLinkList: [
         {
@@ -154,18 +154,18 @@ const state = {
         },
         {
             id: 'link3',
-            value: 'https://reg1.ktrmr.com/Registrar/Login/Default.aspx?',
-            name: 'Registrar URL'
-        },
-        {
-            id: 'link4',
             value: 'https://kgo-support.freshdesk.com/support/home',
             name: 'KGO Support URL'
         },
         {
-            id: 'link5',
+            id: 'link4',
             value: 'https://konnect.kantaroperations.com',
             name: 'Kantar Konnect URL'
+        },
+        {
+            id: 'link5',
+            value: 'https://reg1.ktrmr.com/Registrar/Login/Default.aspx?',
+            name: 'Registrar URL'
         },
     ],
     referenceList: [
@@ -248,6 +248,7 @@ const state = {
     inputFormStatus: true,
     referenceListStatus: false,
     sasCodeListStatus: false,
+    sasCodeListStatusInput: false,
     usefulLinkListStatus: false,
     menuStatus: true,
     storageURLStatus: false
@@ -335,6 +336,9 @@ const getters = {
     getSasCodeListStatus(state) {
         return state.sasCodeListStatus;
     },
+    getSasCodeListStatusInput(state) {
+        return state.sasCodeListStatusInput;
+    },
     getUsefulLinkListStatus(state) {
         return state.usefulLinkListStatus;
     },
@@ -355,6 +359,12 @@ const mutations = {
     console.log(debugCode);
     console.log(languageCode);
     console.log(customOptCode);
+    if (localStorage.getItem(sasCode) != null) {
+        let temp = localStorage.getItem(sasCode);
+        localStorage.removeItem(temp.item);
+        state.sasCodeList.splice(temp.index, 1);
+        console.log('deletion has been done');
+    } 
     const obj = {
       item: sasCode,
       jobNumCode: jobNumCode,
@@ -405,11 +415,14 @@ const mutations = {
       state.activeCluster = tempActiveCluster;  
       state.activeGenVal = tempActiveGenVal;  
       state.activeRsVal = tempActiveRsVal;  
-      state.activeScriptingServer = tempActiveScriptingServer;  
+      state.activeScriptingServer = tempActiveScriptingServer;
+      state.sasCodeListStatus = false;  
+      state.sasCodeListStatusInput = false; 
+      state.inputFormStatus = false; 
   },
   clearAllItems(state) {
     localStorage.clear();
-    state.pro = [];
+    state.sasCodeList = [];
   },
   changeMenuStatus(state) {
     state.menuStatus = !state.menuStatus;
@@ -459,6 +472,9 @@ const mutations = {
   },
   changeSasCodeListStatus(state) {
       state.sasCodeListStatus = !state.sasCodeListStatus;
+  },
+  changeSasCodeListStatusInput(state) {
+      state.sasCodeListStatusInput = !state.sasCodeListStatusInput;
   },
   changeUsefulLinkListStatus(state) {
       state.usefulLinkListStatus = !state.usefulLinkListStatus;
