@@ -93,7 +93,8 @@ export default {
   .inputForm_wrap, .sasCodeList_wrap, .referenceList_wrap, .usefulLinkList_wrap{
     visibility: visible;
     opacity: 1;
-    transition: visibility 1s, opacity 0.5s linear;
+    /* transition: visibility 1s, opacity 0.4s linear; */
+
   }
   .inputForm_wrap_hd, .sasCodeList_wrap_hd, .referenceList_wrap_hd, .usefulLinkList_wrap_hd{
       visibility: hidden;

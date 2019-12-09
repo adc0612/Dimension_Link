@@ -91,6 +91,7 @@ export default {
         border-radius: 10px;
         background: #fff;
         z-index: 99;
+        width: 100%;
 
         /* background: url("../assets/img/woodPatern.png"); */
     }
