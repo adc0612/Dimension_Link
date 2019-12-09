@@ -296,7 +296,6 @@ export default {
         background: #fff;
         z-index: 99;
         width: 100%;
-        box-sizing: border-box;
         /* background: url("../assets/img/woodPatern.png"); */
     }
     .sasCodeList_inputForm{
@@ -455,6 +454,8 @@ export default {
         .input_form_box{
             height: auto;
             padding: 20px;
+            box-sizing: border-box;
+
         }
         .header_txt{
             font-size: 1.5rem;

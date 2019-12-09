@@ -63,8 +63,6 @@ export default {
         background: #fff;
         z-index: 99;
         width: 100%;
-        box-sizing: border-box;
-
         /* background: url("../assets/img/woodPatern.png"); */
     }
     .reference_box > h2{
@@ -105,6 +103,8 @@ export default {
         .reference_box{
             height: auto;
             padding: 20px;
+            box-sizing: border-box;
+
         }
         .close_btn{
           right: 20px;
