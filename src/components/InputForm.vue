@@ -296,6 +296,7 @@ export default {
         background: #fff;
         z-index: 99;
         width: 100%;
+        box-sizing: border-box;
         /* background: url("../assets/img/woodPatern.png"); */
     }
     .sasCodeList_inputForm{

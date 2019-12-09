@@ -63,6 +63,7 @@ export default {
         background: #fff;
         z-index: 99;
         width: 100%;
+        box-sizing: border-box;
 
         /* background: url("../assets/img/woodPatern.png"); */
     }
@@ -100,4 +101,13 @@ export default {
 			border-right: 1px solid #ccc;
 			border-bottom: 1px solid #ccc;
 		}
+    @media only screen and (max-width: 450px) {
+        .reference_box{
+            height: auto;
+            padding: 20px;
+        }
+        .close_btn{
+          right: 20px;
+        }
+    }
 </style>

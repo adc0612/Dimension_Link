@@ -92,6 +92,7 @@ export default {
         background: #fff;
         z-index: 99;
         width: 100%;
+        box-sizing: border-box;
 
         /* background: url("../assets/img/woodPatern.png"); */
     }
@@ -116,5 +117,13 @@ export default {
     .link_box:nth-child(1) > h3{
       color: red;
     }
-    
+    @media only screen and (max-width: 450px) {
+        .useful_link_box{
+            height: auto;
+            padding: 20px;
+        }
+        .close_btn{
+          right: 20px;
+        }
+    }
 </style>
