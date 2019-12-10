@@ -218,7 +218,7 @@ export default {
                 if (customOptCode != ''){
                     customOptCode = "&"+ customOptCode;
                 }
-                if (testIDCode == ''){
+                if (testIDCode === ''){
                     testIDCode = "{패널ID}";
                 }
                 if (sasCodeLeng>3 && sasCodeLeng<16){
