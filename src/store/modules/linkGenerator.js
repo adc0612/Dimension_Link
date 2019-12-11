@@ -73,11 +73,11 @@ const state = {
     ],
     rsValList: [
         {
-            id: "1",
+            id: "rs val: 1",
             addr: "1"
         },
         {
-            id: "0",
+            id: "rs val: 0",
             addr: "0"
         },
     ],
@@ -228,7 +228,7 @@ const state = {
         addr: "Gen24",
     },
     activeRsVal: {
-        id: "1",
+        id: "rs val: 1",
         addr: "1",
     },
     activeScriptingServer: {
