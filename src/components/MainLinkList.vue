@@ -161,7 +161,6 @@ export default {
     color: #138c6f;
   }
   .inner_box{
-    height: 25px;
     position: relative;
   }
   .inner_box::after {
@@ -182,9 +181,9 @@ export default {
       .mainLinkList_wrap{
         padding: 20px 15px;
       }
-      .server_addr_box{
+      /* .server_addr_box{
         height: 70px;
-      }
+      } */
       
       .addr_wrap > h2{
         font-size: 0.9rem;

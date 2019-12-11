@@ -411,7 +411,7 @@ const mutations = {
       state.debugCode = tempDebugCode;
       state.languageCode = tempLanguageCode;
       state.customOptCode = tempCustomOptCode;
-      state.languageCode = tempTestIDCode;
+      state.testIDCode = tempTestIDCode;
       state.activeCluster = tempActiveCluster;  
       state.activeGenVal = tempActiveGenVal;  
       state.activeRsVal = tempActiveRsVal;  
@@ -423,6 +423,8 @@ const mutations = {
   clearAllItems(state) {
     localStorage.clear();
     state.sasCodeList = [];
+      state.sasCodeListStatus = false;
+      state.sasCodeListStatusInput = false; 
   },
   changeMenuStatus(state) {
     state.menuStatus = !state.menuStatus;
@@ -466,6 +468,7 @@ const mutations = {
 
   changeInputFormStatus(state) {
       state.inputFormStatus = !state.inputFormStatus;
+      state.sasCodeListStatus = false;
   },
   changeReferenceListStatus(state) {
       state.referenceListStatus = !state.referenceListStatus;

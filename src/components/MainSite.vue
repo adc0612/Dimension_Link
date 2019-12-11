@@ -49,6 +49,7 @@ export default {
     max-width: 1100px;
     min-width: 500px;
     margin: 0 auto;
+    overflow: auto;
   }
   .header_wrap{
     position: fixed;
@@ -60,7 +61,7 @@ export default {
     background-color:#fff;
   }
   .mainLinkList_wrap{
-    padding: 20px 30px;
+    padding: 50px 30px 20px;
     margin-top: 70px;
   }
   .inputForm_wrap::before, .referenceList_wrap::before, .usefulLinkList_wrap::before{
@@ -106,6 +107,9 @@ export default {
   @media only screen and (max-width: 450px) {
       .wrap{
         min-width: 300px;
+      }
+      .mainLinkList_wrap{
+        padding: 20px 30px;
       }
       .sasCodeListStatus{
         width: 70%;

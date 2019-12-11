@@ -45,13 +45,13 @@
             <label for="languageCode" class="item_text">Language</label>
             <input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
         </div>
-        <div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
-            <label for="customOpt" class="item_text">Custom Option</label>
-            <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
-        </div>
         <div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
             <label for="testID" class="item_text">Test ID</label>
             <input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+        </div>
+        <div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
+            <label for="customOpt" class="item_text">Custom Option</label>
+            <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
         </div>
         </div>
         <div class="select_wrap">
@@ -219,7 +219,7 @@ export default {
                     customOptCode = "&"+ customOptCode;
                 }
                 if (testIDCode === ''){
-                    testIDCode = "{패널ID}";
+                    testIDCode = "{패널아이디}";
                 }
                 if (sasCodeLeng>3 && sasCodeLeng<16){
                     this.$store.commit('addOneItem',{sasCode,jobNumCode,debugCode,languageCode,customOptCode,testIDCode});
