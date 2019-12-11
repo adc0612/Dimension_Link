@@ -113,7 +113,7 @@ export default {
   }
   .active_val_wrap > span{
     font-size: 0.9rem;
-    color:#f2be23;
+    color:#f46354;
     margin-right: 10px;
     font-weight: 700;
   }
