@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="header_box shadow">
-      <i class="fas fa-bars menu_btn" @click="changeSasCodeListStatus"></i>
+      <i class="fas fa-bars menu_btn" @click="changeSasCodeListStatus" title="SasCode List"></i>
       <h1 class="header_title">DIMENSION LINK</h1>
-      <i class="fas fa-info-circle refer_btn" @click="changeReferenceListStatus"></i>
-      <i class="fas fa-link link_btn" @click="changeUsefulLinkListStatus"></i>
-      <i class="fas fa-home back_btn" @click="changeInputFormStatus"></i>
+      <i class="fas fa-info-circle refer_btn" @click="changeReferenceListStatus" title="Value Description"></i>
+      <i class="fas fa-link link_btn" @click="changeUsefulLinkListStatus" title="URL List"></i>
+      <i class="fas fa-home back_btn" @click="changeInputFormStatus" title="Back"></i>
       <div class="active_val_wrap">
         <span>{{activeSASCode}}</span>
         <span>{{activeCluster.id}}</span>
@@ -65,6 +65,7 @@ export default {
     color: rgb(117, 117, 117);
     top: 0;
     left: 0;
+    cursor: pointer;
     /* visibility: hidden;
     opacity: 0; */
     transition: visibility 1s, opacity 0.5s linear;
