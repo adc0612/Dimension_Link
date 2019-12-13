@@ -33,7 +33,7 @@
             </div>
         </Modal>
         <div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
-            <label for="jobNum" class="item_text">Job Number</label>
+            <label for="jobNum" class="item_text">FTP Folder Name</label>
             <!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
             <input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
         </div>
@@ -368,7 +368,7 @@ export default {
     .item_wrap > input{
         display: block;
         width: 100%;
-        color:#000;
+        color:#138c6f;
         border: none;
         border-bottom-color: currentcolor;
         border-bottom-style: none;
