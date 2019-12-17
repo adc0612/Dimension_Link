@@ -95,7 +95,7 @@
         </div> 
         <div class="select_box">
             <v-select
-            label="id"
+            label="name"
             @input="setActiveScriptingServer"
             :options="scriptingServerList"
             :value="activeScriptingServer" 

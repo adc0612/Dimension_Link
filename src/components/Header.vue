@@ -2,7 +2,9 @@
   <div>
     <div class="header_box shadow">
       <i class="fas fa-bars menu_btn" @click="changeSasCodeListStatus" title="SasCode List"></i>
-      <h1 class="header_title">DIMENSION LINK</h1>
+      <h1 class="header_title">
+        <a href="https://dimensionlink.netlify.com/" target="_blank" >DIMENSION LINK</a>
+      </h1>
       <i class="fas fa-info-circle refer_btn" @click="changeReferenceListStatus" title="Value Description"></i>
       <i class="fas fa-link link_btn" @click="changeUsefulLinkListStatus" title="URL List"></i>
       <i class="fas fa-home back_btn" @click="changeInputFormStatus" title="Back"></i>
@@ -48,9 +50,15 @@ export default {
   .header_title{
     line-height: 50px;
     text-align: center;
+  }
+  .header_title > a{
     font-size: 1.7rem;
     letter-spacing: 2px;
     color: #138c6f;
+  }
+  .header_title > a:hover{
+    color: #000;
+    text-decoration: none;
   }
   .header_title>span{
     font-size:0.9rem;

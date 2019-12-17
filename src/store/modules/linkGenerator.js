@@ -84,15 +84,24 @@ const state = {
     scriptingServerList: [
         {
             id: "WIN-CPEQHJJ1I36",
-            jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
+            name: "WIN-CPEQHJJ1I36 (W Server, Z Server)",
+            jobBuilderAddr: "http://WIN-CPEQHJJ1I36.grpitsrv.com/JobBuilder/",
             scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
-            scriptingNet: "https://scripting601-aw2a.grpitsrv.com/",
+            scriptingNet: "http://WIN-CPEQHJJ1I36.grpitsrv.com",
         },
         {
             id: "WIN-ORVIQIAUF0Q",
-            jobBuilderAddr: "https://scripting601-aw2b.grpitsrv.com/JobBuilder/",
+            name: "WIN-ORVIQIAUF0Q (W Server, Z Server)",
+            jobBuilderAddr: "http://WIN-ORVIQIAUF0Q.grpitsrv.com/JobBuilder/",
             scriptingAddr: "https://scripting601-aw2b.grpitsrv.com/mrIWeb/mrIweb.dll?",
-            scriptingNet: "https://scripting601-aw2b.grpitsrv.com/",
+            scriptingNet: "http://WIN-ORVIQIAUF0Q.grpitsrv.com/",
+        },
+        {
+            id: "WIN-JJ0AC4JJO5F",
+            name: "WIN-JJ0AC4JJO5F (Z Server)",
+            jobBuilderAddr: "http://WIN-JJ0AC4JJO5F.grpitsrv.com/JobBuilder",
+            scriptingAddr: "https://scripting601-aw2b.grpitsrv.com/mrIWeb/mrIweb.dll?",
+            scriptingNet: "http://WIN-JJ0AC4JJO5F.grpitsrv.com/",
         },
     ],
     fTPBtns: [
@@ -233,10 +242,10 @@ const state = {
     },
     activeScriptingServer: {
         id: "WIN-CPEQHJJ1I36",
-        jobBuilderAddr: "https://scripting601-aw2a.grpitsrv.com/JobBuilder/",
+        name: "WIN-CPEQHJJ1I36 (W Server, Z Server)",
+        jobBuilderAddr: "http://WIN-CPEQHJJ1I36.grpitsrv.com/JobBuilder/",
         scriptingAddr: "https://scripting601-aw2a.grpitsrv.com/mrIWeb/mrIweb.dll?",
-        scriptingNet: "https://scripting601-aw2a.grpitsrv.com/",
-
+        scriptingNet: "http://WIN-CPEQHJJ1I36.grpitsrv.com",
     },
     sasCode: "",
     jobNumCode: "",
