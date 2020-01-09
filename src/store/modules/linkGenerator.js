@@ -141,7 +141,7 @@ const state = {
     usefulServerLinkList: [
         {
             id: 'slink1',
-            value: 'JobBuilder/',
+            value: '/JobBuilder/',
             name: 'Job Builder URL'
         },
         // {
