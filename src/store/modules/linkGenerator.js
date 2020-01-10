@@ -107,7 +107,7 @@ const state = {
     fTPBtns: [
         {
             id: 1,
-            value: 'ftp://125.141.196.111:22/',
+            value: 'ftp://125.141.196.111/',
             name: 'Image FTP',
         },
         {
