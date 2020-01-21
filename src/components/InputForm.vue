@@ -11,7 +11,7 @@
             <div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
             <label for="sasCode" class="item_text">SAS CODE</label>
             <!-- <input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
-            <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+            <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="setSasCodeTemp" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
             <!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
         </div>
         <Modal v-if="showModalSas" @close="showModalSas = false">
@@ -162,8 +162,21 @@ export default {
 
             activeSasCode: 'getSASCode',
             sasCodeListStatusInput: 'getSasCodeListStatusInput',
-
+            
             }),
+        // setSasCodeTemp: {
+        //     get(){
+        //         return (this.sasCodeTxt == '') ? false: this.$store.commit('getSASCode');
+                
+        //     },
+        //     set(val){
+        //         this.sasCodeTxt =val;
+
+        //     }
+        // }
+        setSasCodeTemp: function() {
+                return (this.sasCodeTxt == '') ? false: this.$store.commit('getSASCode');
+        }
         
         // sasCodeTxt:{
         //     get (){
@@ -194,6 +207,7 @@ export default {
         },
         submitForm(){
             console.log(this.sasCodeTxt);
+            // let sasCode = this.sasCodeTxt.trim();
             let sasCode = this.sasCodeTxt.trim();
             let jobNumCode = this.jobNumTxt.trim();
             let debugCode = this.debugCodeTxt.trim();
