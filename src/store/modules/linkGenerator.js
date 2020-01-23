@@ -112,7 +112,7 @@ const state = {
         },
         {
             id: 2,
-            value: 'ftp://media.tns-global.com/multimedia/KO/',
+            value: '\\\\amznfsxsvtdpvph.kt.group.local\\share\\CDN_Media\\Multimedia\\KO',
             name: 'Video FTP',
         }
     ],
