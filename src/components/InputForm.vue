@@ -3,60 +3,60 @@
       <div class="input_form_box">
         <div class="header_wrap">
             <i class="fas fa-bars menu_btn" @click="changeSasCodeListStatusInput"></i>
-            <h1 class="header_txt">Dimension Link</h1>
+            <h1 class="header_txt"  @click="hideSasCodeList">Dimension Link</h1>
         </div>
-        <SasCodeList class="sasCodeList_inputForm" :class="{sasCodeList_inputForm_hd:!sasCodeListStatusInput}"></SasCodeList>
+        <SasCodeList class="sasCodeList_inputForm" @focus="changeSasCodeListStatusInput" :class="{sasCodeList_inputForm_hd:!sasCodeListStatusInput}"></SasCodeList>
 
-        <div class="textFieldWrap">
+        <div class="textFieldWrap"  @click="hideSasCodeList">
             <div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
             <label for="sasCode" class="item_text">SAS CODE</label>
             <!-- <input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
             <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
             <!-- <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="setSasCodeTemp" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
             <!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
-        </div>
-        <Modal v-if="showModalSas" @close="showModalSas = false">
-            <h3 slot="header">
-                Warning!
-                <i class="closeModalBtn fas fa-times" @click="showModalSas = false"></i>
-            </h3>
-            <div slot="body">
-                Please type SAS Code
             </div>
-        </Modal>
-        <Modal v-if="showModalDebug" @close="showModalDebug = false">
-            <h3 slot="header">
-                Warning!
-                <i class="closeModalBtn fas fa-times" @click="showModalDebug = false"></i>
-            </h3>
-            <div slot="body">
-                Debug code should be in numeric
+            <Modal v-if="showModalSas" @close="showModalSas = false">
+                <h3 slot="header">
+                    Warning!
+                    <i class="closeModalBtn fas fa-times" @click="showModalSas = false"></i>
+                </h3>
+                <div slot="body">
+                    Please type SAS Code
+                </div>
+            </Modal>
+            <Modal v-if="showModalDebug" @close="showModalDebug = false">
+                <h3 slot="header">
+                    Warning!
+                    <i class="closeModalBtn fas fa-times" @click="showModalDebug = false"></i>
+                </h3>
+                <div slot="body">
+                    Debug code should be in numeric
+                </div>
+            </Modal>
+            <div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
+                <label for="jobNum" class="item_text">FTP Folder Name</label>
+                <!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
+                <input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
             </div>
-        </Modal>
-        <div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
-            <label for="jobNum" class="item_text">FTP Folder Name</label>
-            <!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
-            <input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
+            <div class="item_wrap" :class="{focus: focusState3, active: activeState3}">
+                <label for="debugCode" class="item_text">Debug CODE</label>
+                <input type="text" @input="activeFunc" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
+            </div>
+            <div class="item_wrap" :class="{focus: focusState4, active: activeState4}">
+                <label for="languageCode" class="item_text">Language</label>
+                <input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
+            </div>
+            <div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
+                <label for="testID" class="item_text">Test ID</label>
+                <input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+            </div>
+            <div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
+                <label for="customOpt" class="item_text">Custom Option</label>
+                <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
+            </div>
         </div>
-        <div class="item_wrap" :class="{focus: focusState3, active: activeState3}">
-            <label for="debugCode" class="item_text">Debug CODE</label>
-            <input type="text" @input="activeFunc" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
-        </div>
-        <div class="item_wrap" :class="{focus: focusState4, active: activeState4}">
-            <label for="languageCode" class="item_text">Language</label>
-            <input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
-        </div>
-        <div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
-            <label for="testID" class="item_text">Test ID</label>
-            <input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
-        </div>
-        <div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
-            <label for="customOpt" class="item_text">Custom Option</label>
-            <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
-        </div>
-        </div>
-        <div class="select_wrap">
-        <div class="select_box">
+        <div class="select_wrap"  @click="hideSasCodeList">
+            <div class="select_box">
             <v-select
             label="id"
             @input="setActiveCluster"
@@ -64,7 +64,7 @@
             :value="activeCluster"
             class="select_box"
             placeholder="Select a Cluster Value"></v-select>
-        </div>
+            </div>
         <!-- <div class="select_box">
             <v-select
             menu-props="auto"
@@ -75,34 +75,34 @@
             class="select_box"
             placeholder="Select a Gen Value"></v-select>
         </div>  -->
-        <div class="select_box">
-            <v-select
-            menu-props="auto"
-            label="id"
-            @input="setActiveGenVal"
-            :options="genValList"
-            :value="activeGenVal"
-            class="select_box"
-            placeholder="Select a Gen Value"></v-select>
-        </div> 
-        <div class="select_box">
-            <v-select
-            label="id"
-            @input="setActiveRsVal"
-            :options="rsValList"
-            :value="activeRsVal" 
-            class="select_box"
-            placeholder="Select a Rs Value"></v-select>
-        </div> 
-        <div class="select_box">
-            <v-select
-            label="name"
-            @input="setActiveScriptingServer"
-            :options="scriptingServerList"
-            :value="activeScriptingServer" 
-            class="select_box"
-            placeholder="Select a Scripting Server"></v-select>
-        </div> 
+            <div class="select_box">
+                <v-select
+                menu-props="auto"
+                label="id"
+                @input="setActiveGenVal"
+                :options="genValList"
+                :value="activeGenVal"
+                class="select_box"
+                placeholder="Select a Gen Value"></v-select>
+            </div> 
+            <div class="select_box">
+                <v-select
+                label="id"
+                @input="setActiveRsVal"
+                :options="rsValList"
+                :value="activeRsVal" 
+                class="select_box"
+                placeholder="Select a Rs Value"></v-select>
+            </div> 
+            <div class="select_box">
+                <v-select
+                label="name"
+                @input="setActiveScriptingServer"
+                :options="scriptingServerList"
+                :value="activeScriptingServer" 
+                class="select_box"
+                placeholder="Select a Scripting Server"></v-select>
+            </div> 
         </div>
         <div class="submit_but_wrap">
             <button v-on:click="submitForm">Submit</button>
@@ -251,6 +251,12 @@ export default {
             this.$store.commit('setCustomOptCode',customOptCode);
             this.$store.commit('setTestIDCode',testIDCode);
             this.$store.commit('changeInputFormStatus');
+        },
+        hideSasCodeList(){
+            let tempStat = this.$store.getters.getSasCodeListStatusInput;
+            if (tempStat){
+                this.$store.commit('changeSasCodeListStatusInput');
+            }
         },
         activeFunc(){
             if (this.sasCodeTxt ==''){

@@ -1,17 +1,19 @@
 <template>
   <div>
-    <transition-group name="list" tag="ul">
-      <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="list_item shadow">
-        <span>
-          {{sasCodeItem.item}}
-        </span>
-        <span class="removeBtn" v-on:click="removeTodo({sasCodeItem,index})">
-          <i class="fas fa-trash-alt" title="Delete"></i>
-        </span>
-      </li>
-    </transition-group>
-    <div class="clearAllbtn_box"  v-on:click="clearTodo" title="Delete All">
-      <span class="clearAllBtn">Clear All</span>
+    <div class="listWrap">
+      <transition-group name="list" tag="ul">
+        <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="list_item shadow">
+          <span>
+            {{sasCodeItem.item}}
+          </span>
+          <span class="removeBtn" v-on:click="removeTodo({sasCodeItem,index})">
+            <i class="fas fa-trash-alt" title="Delete"></i>
+          </span>
+        </li>
+      </transition-group>
+      <div class="clearAllbtn_box"  v-on:click="clearTodo" title="Delete All">
+        <span class="clearAllBtn">Clear All</span>
+      </div>
     </div>
   </div>
 </template>
@@ -76,7 +78,10 @@ li {
   color: #fff;
   cursor: pointer;
 }
-
+.listWrap{
+  height: 100%;
+  overflow: auto;
+}
 .removeBtn {
   margin-left: auto;
   color: #de4343;

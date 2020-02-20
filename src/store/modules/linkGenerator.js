@@ -134,7 +134,7 @@ const state = {
     extractorBtn: [
         {
             id: 1,
-            value: '\\\\kt.group.local\\ko_dimensions\\CFS2\\DPAT_Output_NA\\',
+            value: '\\\\EC2AMAZ-16ITHK3\\DPAT_Output_NA\\',
             name: 'Extractor File',
         },
     ],
