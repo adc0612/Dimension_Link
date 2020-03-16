@@ -2,8 +2,8 @@
   <div>
     <div class="listWrap">
       <transition-group name="list" tag="ul">
-        <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item" v-on:click="loadOneSascode({sasCodeItem,index})" class="list_item shadow">
-          <span>
+        <li v-for="(sasCodeItem,index) in this.storedSasCodeList" v-bind:key="sasCodeItem.item"  class="list_item shadow">
+          <span v-on:click="loadOneSascode({sasCodeItem,index})">
             {{sasCodeItem.item}}
           </span>
           <span class="removeBtn" v-on:click="removeTodo({sasCodeItem,index})">
@@ -82,10 +82,14 @@ li {
   height: 100%;
   overflow: auto;
 }
+.list_item>span:nth-child(1){
+  width: 100%;
+}
 .removeBtn {
   margin-left: auto;
   color: #de4343;
   cursor: pointer;
+  padding: 0 10px;
 }
 .checkBtn {
   line-height: 45px;

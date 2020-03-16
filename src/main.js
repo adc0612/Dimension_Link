@@ -3,6 +3,7 @@ import App from './App.vue';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import VueClipboards from "vue-clipboards";
+import ClickOutside from 'vue-click-outside'
 
 import {
   store
@@ -11,6 +12,7 @@ import {
 Vue.config.productionTip = false
 Vue.component('v-select', vSelect);
 Vue.use(VueClipboards);
+Vue.use(ClickOutside);
 
 // Vue.use(VueRouter);
 

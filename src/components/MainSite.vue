@@ -3,7 +3,7 @@
     <Header class="header_wrap"></Header>
     <InputForm class="inputForm_wrap" :class="{inputForm_wrap_hd:!inputFormStatus}"></InputForm>
     <ReferenceList class="referenceList_wrap" :class="{referenceList_wrap_hd:!referenceListStatus}"></ReferenceList>
-    <UsefulLinkList class="usefulLinkList_wrap"  :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
+    <UsefulLinkList class="usefulLinkList_wrap" :class="{usefulLinkList_wrap_hd:!usefulLinkListStatus}"></UsefulLinkList>
     <SasCodeList class="sasCodeList_wrap" :class="{sasCodeList_wrap_hd:!sasCodeListStatus}"></SasCodeList>
     <MainLinkList class="mainLinkList_wrap shadow"></MainLinkList>
   </div>
@@ -16,7 +16,9 @@ import ReferenceList from './ReferenceList'
 import UsefulLinkList from './UsefulLinkList'
 import SasCodeList from './SasCodeList'
 import MainLinkList from './MainLinkList'
-import {mapGetters, mapMutations} from 'vuex';  
+import {mapGetters, mapMutations} from 'vuex';
+import ClickOutside from 'vue-click-outside'
+
 export default {
   data(){
     return{
@@ -30,7 +32,9 @@ export default {
                usefulLinkListStatus: 'getUsefulLinkListStatus',
             }),
         ...mapMutations({
-
+          changeReferenceListStatus: 'changeReferenceListStatus',
+          // changeSasCodeListStatus: 'changeSasCodeListStatus',
+          changeUsefulLinkListStatus: 'changeUsefulLinkListStatus',
         }),
     },
     components: {
@@ -40,6 +44,9 @@ export default {
       UsefulLinkList,
       SasCodeList,
       MainLinkList,
+    },
+     directives: {
+        ClickOutside
     }
 }
 </script>

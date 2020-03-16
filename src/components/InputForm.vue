@@ -3,11 +3,11 @@
       <div class="input_form_box">
         <div class="header_wrap">
             <i class="fas fa-bars menu_btn" @click="changeSasCodeListStatusInput"></i>
-            <h1 class="header_txt"  @click="hideSasCodeList">Dimension Link</h1>
+            <h1 class="header_txt" @click="hideSasCodeList">Dimension Link</h1>
         </div>
-        <SasCodeList class="sasCodeList_inputForm" @focus="changeSasCodeListStatusInput" :class="{sasCodeList_inputForm_hd:!sasCodeListStatusInput}"></SasCodeList>
+        <SasCodeList class="sasCodeList_inputForm" :class="{sasCodeList_inputForm_hd:!sasCodeListStatusInput}"></SasCodeList>
 
-        <div class="textFieldWrap"  @click="hideSasCodeList">
+        <div class="textFieldWrap" @click="hideSasCodeList">
             <div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
             <label for="sasCode" class="item_text">SAS CODE</label>
             <!-- <input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
@@ -55,7 +55,7 @@
                 <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
             </div>
         </div>
-        <div class="select_wrap"  @click="hideSasCodeList">
+        <div class="select_wrap" @click="hideSasCodeList">
             <div class="select_box">
             <v-select
             label="id"
@@ -115,7 +115,6 @@
 import {mapState, mapGetters, mapMutations} from 'vuex';  
 import Modal from './common/modal.vue';
 import SasCodeList from './SasCodeList'
-
 export default {
     data () {
       return {
@@ -296,6 +295,7 @@ export default {
       SasCodeList,
 
     }
+   
 }
 </script>
 
@@ -311,8 +311,6 @@ export default {
         min-width: 300px;
         height: 650px;
         padding: 50px 60px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
         border-radius: 10px;
         background: #fff;
         z-index: 99;
@@ -322,7 +320,6 @@ export default {
     .sasCodeList_inputForm{
         width: 280px;
         padding: 5px;
-        -webkit-box-sizing: border-box;
         box-sizing: border-box;
         position: absolute;
         top: 85px;
@@ -376,24 +373,19 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        -webkit-transition: all .2s;
         transition: all .2s;
         z-index: -1;
-        pointer-events: none;
-        -webkit-font-smoothing: antialiased;
-        -webkit-transform: translate3d(0, 3px, 0) scale(1);
         transform: translate3d(0, 3px, 0) scale(1);
-        -webkit-transform-origin: left top;
         transform-origin: left top;
     }
-    .item_wrap > input{
+    .item_wrap > input{ 
         display: block;
         width: 100%;
         color:#138c6f;
         border: none;
-        border-bottom-color: currentcolor;
+        /* border-bottom-color: currentcolor;
         border-bottom-style: none;
-        border-bottom-width: medium;
+        border-bottom-width: medium; */
         border-bottom: 1px solid#DDD;
         background-color:transparent;
         box-sizing: border-box;
@@ -451,20 +443,8 @@ export default {
         letter-spacing: .01em;
         word-break: break-all;
         text-transform: uppercase;
-        position: relative;
-        display: inline-block;
         cursor: pointer;
-        vertical-align: middle;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-        text-align: center;
         box-sizing: border-box;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        text-decoration: none;
     }
     .submit_but_wrap > button:hover{
         border: 2px solid #138c6f;
