@@ -1,3 +1,9 @@
+// Import the `getField` getter and the `updateField`
+// mutation function from the `vuex-map-fields` module.
+import {
+    getField,
+    updateField
+} from 'vuex-map-fields';
 const storage = {
     fetch() {
         const arr = [];
@@ -351,6 +357,7 @@ const getters = {
     getUsefulLinkListStatus(state) {
         return state.usefulLinkListStatus;
     },
+    getField,
 };
 
 const mutations = {
@@ -491,6 +498,7 @@ const mutations = {
   changeUsefulLinkListStatus(state) {
       state.usefulLinkListStatus = !state.usefulLinkListStatus;
   },
+  updateField,
 };
 
 // function setClusterFunc(state,cluster){

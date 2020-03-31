@@ -11,7 +11,7 @@
             <div class="item_wrap" :class="{focus: focusState1, active: activeState1}">
             <label for="sasCode" class="item_text">SAS CODE</label>
             <!-- <input type="text" @input="activeState1=true" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
-            <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCodeTxt" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm">
+            <input type="text" @change="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="sasCode" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm" v-focus>
             <!-- <input type="text" @input="activeFunc" @focus="focusState1=true" @blur="focusState1=false" v-model="setSasCodeTemp" name="sasCode" id="sasCode" v-on:keyup.enter="submitForm"> -->
             <!-- <input type="text" :value="sasCodeTxt" name="SASCODE" id="SASCODE" v-on:keyup.enter="submitForm"> -->
             </div>
@@ -26,7 +26,7 @@
             </Modal>
             <Modal v-if="showModalDebug" @close="showModalDebug = false">
                 <h3 slot="header">
-                    Warning!
+                    Warning!          
                     <i class="closeModalBtn fas fa-times" @click="showModalDebug = false"></i>
                 </h3>
                 <div slot="body">
@@ -35,24 +35,24 @@
             </Modal>
             <div class="item_wrap" :class="{focus: focusState2, active: activeState2}">
                 <label for="jobNum" class="item_text">FTP Folder Name</label>
-                <!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
-                <input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumTxt" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
+                <!-- <input type="text" @input="activeState2=true" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumCode" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm"> -->
+                <input type="text" @input="activeFunc" @focus="focusState2=true" @blur="focusState2=false" v-model="jobNumCode" name="jobNum" id="jobNum" v-on:keyup.enter="submitForm">
             </div>
             <div class="item_wrap" :class="{focus: focusState3, active: activeState3}">
                 <label for="debugCode" class="item_text">Debug CODE</label>
-                <input type="text" @input="activeFunc" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCodeTxt" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
+                <input type="text" @input="activeFunc" @focus="focusState3=true" @blur="focusState3=false" v-model="debugCode" name="debugCode" id="debugCode" v-on:keyup.enter="submitForm">
             </div>
             <div class="item_wrap" :class="{focus: focusState4, active: activeState4}">
                 <label for="languageCode" class="item_text">Language</label>
-                <input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCodeTxt" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
+                <input type="text" @input="activeFunc" @focus="focusState4=true" @blur="focusState4=false" v-model="languageCode" name="languageCode" id="languageCode" value="" v-on:keyup.enter="submitForm">
             </div>
             <div class="item_wrap" :class="{focus: focusState6, active: activeState6}">
                 <label for="testID" class="item_text">Test ID</label>
-                <input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCodeTxt" name="testID" id="testID" v-on:keyup.enter="submitForm">
+                <input type="text" @input="activeFunc" @focus="focusState6=true" @blur="focusState6=false" v-model="testIDCode" name="testID" id="testID" v-on:keyup.enter="submitForm">
             </div>
             <div class="item_wrap" :class="{focus: focusState5, active: activeState5}">
                 <label for="customOpt" class="item_text">Custom Option</label>
-                <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptTxt" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
+                <input type="text" @input="activeFunc" @focus="focusState5=true" @blur="focusState5=false" v-model="customOptCode" name="customOpt" id="customOpt" v-on:keyup.enter="submitForm">
             </div>
         </div>
         <div class="select_wrap" @click="hideSasCodeList">
@@ -113,17 +113,18 @@
 
 <script>
 import {mapState, mapGetters, mapMutations} from 'vuex';  
+import { mapFields } from 'vuex-map-fields';
 import Modal from './common/modal.vue';
 import SasCodeList from './SasCodeList'
 export default {
     data () {
       return {
-        sasCodeTxt: "",
-        jobNumTxt: "",
-        debugCodeTxt: "",
-        languageCodeTxt: "",
-        customOptTxt: "",
-        testIDCodeTxt: "",
+        // sasCodeTxt: "",
+        // jobNumCode: "",
+        // debugCode: "",
+        // languageCode: "",
+        // customOptCode: "",
+        // testIDCode: "",
         clusterVal: "",
         showModalSas: false,
         showModalDebug: false,
@@ -144,6 +145,14 @@ export default {
       }
     },
     computed: {
+        ...mapFields([
+            'sasCode',
+            'jobNumCode',
+            'debugCode',
+            'languageCode',
+            'customOptCode',
+            'testIDCode',
+        ]),
         ...mapState ({
             // activeClusterObject: 'activeCluster',
             // activeGenValObject: 'activeGenVal',
@@ -174,9 +183,9 @@ export default {
 
         //     }
         // }
-        setSasCodeTemp: function() {
-                return (this.sasCodeTxt == '') ? false: this.$store.commit('getSASCode');
-        }
+        // setSasCodeTemp: function() {
+        //         return (this.sasCode == '') ? false: this.$store.commit('getSASCode');
+        // }
         
         // sasCodeTxt:{
         //     get (){
@@ -198,25 +207,25 @@ export default {
             // changeInputFormStatus: 'changeInputFormStatus',
         }),
         clearInput () {
-            this.sasCodeTxt = '';
-            this.jobNumTxt = '';
-            this.debugCodeTxt = '';
-            this.languageCodeTxt = '';
-            this.customOptTxt = '';
-            this.testIDCodeTxt = '';
+            this.sasCode = '';
+            this.jobNumCode = '';
+            this.debugCode = '';
+            this.languageCode = '';
+            this.customOptCode = '';
+            this.testIDCode = '';
         },
         submitForm(){
-            console.log(this.sasCodeTxt);
+            console.log(this.sasCode);
             // let sasCode = this.sasCodeTxt.trim();
-            let sasCode = this.sasCodeTxt.trim();
-            let jobNumCode = this.jobNumTxt.trim();
-            let debugCode = this.debugCodeTxt.trim();
-            let languageCode = this.languageCodeTxt.trim();
-            let customOptCode = this.customOptTxt.trim();
-            let testIDCode = this.testIDCodeTxt.trim();
-            if (this.sasCodeTxt == '') {
+            let sasCode = this.sasCode.trim();
+            let jobNumCode = this.jobNumCode.trim();
+            let debugCode = this.debugCode.trim();
+            let languageCode = this.languageCode.trim();
+            let customOptCode = this.customOptCode.trim();
+            let testIDCode = this.testIDCode.trim();
+            if (this.sasCode == '') {
                 this.showModalSas = !this.showModalSas;
-            }else if( (debugCode != '') && (!this.regex.test(this.debugCodeTxt))) {
+            }else if( (debugCode != '') && (!this.regex.test(this.debugCode))) {
                 this.showModalDebug = !this.showModalDebug;
             }else{
                 let sasCodeLeng = sasCode.length;
@@ -258,35 +267,59 @@ export default {
             }
         },
         activeFunc(){
-            if (this.sasCodeTxt ==''){
+            if (this.sasCode ==''){
                 this.activeState1 = false;
             }else{
                 this.activeState1 = true;
             }
-            if (this.jobNumTxt ==''){
+            if (this.jobNumCode ==''){
                 this.activeState2 = false;
             }else{
                 this.activeState2 = true;
             }
-            if (this.debugCodeTxt ==''){
+            if (this.debugCode ==''){
                 this.activeState3 = false;
             }else{
                 this.activeState3 = true;
             }
-            if (this.languageCodeTxt ==''){
+            if (this.languageCode ==''){
                 this.activeState4 = false;
             }else{
                 this.activeState4 = true;
             }
-            if (this.customOptTxt ==''){
+            if (this.customOptCode ==''){
                 this.activeState5 = false;
             }else{
                 this.activeState5 = true;
             }
-            if (this.testIDCodeTxt ==''){
+            if (this.testIDCode ==''){
                 this.activeState6 = false;
             }else{
                 this.activeState6 = true;
+            }
+        }
+    },
+    watch:{
+        sasCodeChck: function (val) {
+            val = this.sasCode;
+            if (val==''){
+                if (this.sasCode ==''){
+                    this.activeState1 = false;
+                }else{
+                    this.activeState1 = true;
+                    val = this.sasCode;
+                }
+            }else{
+                val = this.sasCode;
+                this.activeState1 = true;
+            }
+        }
+    },
+    directives: {
+        focus: {
+            // 디렉티브 정의
+            inserted: function (el) {
+            el.focus()
             }
         }
     },
