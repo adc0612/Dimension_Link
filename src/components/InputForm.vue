@@ -237,10 +237,14 @@ export default {
                     this.$store.commit('setDebugCode',debugCode)
                 }
                 if (languageCode != ''){
-                    languageCode = "&lang=" + languageCode;
+                    if (!languageCode.includes("&lang=")){
+                        languageCode = "&lang=" + languageCode;
+                    }
                 }
                 if (customOptCode != ''){
-                    customOptCode = "&"+ customOptCode;
+                    if (!languageCode.includes("&")){
+                        customOptCode = "&"+ customOptCode;
+                    }
                 }
                 if (testIDCode === ''){
                     testIDCode = "{패널아이디}";
