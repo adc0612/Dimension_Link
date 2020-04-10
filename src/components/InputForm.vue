@@ -219,7 +219,8 @@ export default {
             // let sasCode = this.sasCodeTxt.trim();
             let sasCode = this.sasCode.trim();
             let jobNumCode = this.jobNumCode.trim();
-            let debugCode = this.debugCode.trim();
+            // let debugCode = this.debugCode.trim();
+            let debugCode = this.debugCode;
             let languageCode = this.languageCode.trim();
             let customOptCode = this.customOptCode.trim();
             let testIDCode = this.testIDCode.trim();
