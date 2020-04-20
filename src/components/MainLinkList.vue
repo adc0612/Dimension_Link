@@ -5,37 +5,37 @@
       <div class="server_addr_box addr_box">
         <h3>Scripting Link</h3>
         <div class="inner_box">
-          <a class="server_addr" target="_blank" :href="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
-            {{activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
+          <a class="server_addr" target="_blank" :href="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
+            {{activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
           </a>
-          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
+          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeScriptingServer.scriptingAddr+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
         </div>
       </div>
       <div class="server_addr_box addr_box">
         <h3>Preview Link</h3>
         <div class="inner_box">
-            <a class="server_addr" target="_blank" :href="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
-            {{activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
+            <a class="server_addr" target="_blank" :href="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
+            {{activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
             </a>
-            <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
+            <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.preview+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&pid=auto&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
         </div>
       </div>
       <div class="server_addr_box addr_box">
         <h3>Live Test Link</h3>
         <div class="inner_box">
-          <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
-            {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
+          <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode">
+            {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode}}
           </a>
-          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
+          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+'&i.test=1&debug='+activeDebugCode+activeLanguageCode+activeCustomOptCode"></i>
         </div>
       </div>
       <div class="server_addr_box addr_box">
         <h3>Live Link</h3>
         <div class="inner_box">
-          <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode">
-            {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode}}
+          <a class="server_addr" target="_blank" :href="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode">
+            {{activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode}}
           </a>
-          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode"></i>
+          <i class="far fa-copy copy_but" title="copy" v-clipboard="activeCluster.live+'i.project='+activeSASCode+'&s='+activeGenVal.addr+'&id=1&chk=na&aar=1&rs='+activeRsVal.addr+'&pid='+activeTestIDCode+activeLanguageCode+activeCustomOptCode"></i>
         </div>
       </div>
     </div>
