@@ -421,9 +421,6 @@ export default {
         width: 100%;
         color:#138c6f;
         border: none;
-        /* border-bottom-color: currentcolor;
-        border-bottom-style: none;
-        border-bottom-width: medium; */
         border-bottom: 1px solid#DDD;
         background-color:transparent;
         box-sizing: border-box;
@@ -468,7 +465,6 @@ export default {
     .submit_but_wrap > button{
         border: 2px solid #000;
         color: #000;
-        min-width: 270px;
         max-width: 270px;
         min-height: 3.125em;
         min-width: 180px;
