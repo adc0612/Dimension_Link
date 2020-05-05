@@ -1,9 +1,10 @@
-# vue-dimension-link
+# Link generate site for Dimension
+> npm install
 
 ## Project setup
-```
-npm install
-```
+
+> npm install
+
 
 ### Compiles and hot-reloads for development
 ```
