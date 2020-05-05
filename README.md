@@ -10,7 +10,7 @@
 > 사이트 주소: https://dimensionlink.netlify.com/ 
 2. 프로젝트 SAS CODE 입력
 3. 엔터나 SUBMIT버튼 누르면 기본셋팅으로 URL이 생성
-> 원하는 DebugCode, Language, TestID, Cluster종류 등 편집해서 생성이 가능
+> 원하는 DebugCode, Language, TestID, Cluster종류 등 편집해서 생성이 가능 <br>
 > 각 URL 옆 copy버튼 누르면 복사가 되서 붙여넣기 가능
 
 ## 편의기능
