@@ -12,7 +12,7 @@
 > 사이트 주소: https://dimensionlink.netlify.com/ 
 2. 프로젝트 SAS CODE 입력
 3. 엔터나 SUBMIT버튼 누르면 기본셋팅으로 URL이 생성
-> 원하는 DebugCode, Language, TestID, Cluster종류 등 편집해서 생성이 가능 <br>
+> 원하는 DebugCode, Language, TestID, Cluster종류 등 편집해서 생성이 가능  
 > 각 URL 옆 copy버튼 누르면 복사가 되서 붙여넣기 가능
 
 ## 편의기능
@@ -21,8 +21,21 @@
 - 이전에 생성했던 코드들은 브라우저 저장소에 저장이 되어 다시 쓰기 용이함
 - 모바일로도 접속 가능
 
-## 사용된 Framework
-Vue
+## 기술
+- Vue.js 2.6.11
+- Vue Router
+- Vuex
+- vue-clipboards
+- vue-select
+
+
+## 개발 환경
+
+- [Chrome](https://www.google.com/intl/ko/chrome/)
+- [Git](https://git-scm.com/downloads)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Node.js LTS 버전(v10.x 이상)](https://nodejs.org/ko/)
+- [Vue.js Dev Tools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
 ## 사이트 주소
 > https://dimensionlink.netlify.com/ 
