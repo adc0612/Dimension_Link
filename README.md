@@ -5,6 +5,8 @@
 - 링크 공유 때 URL을 매번 copy해오고 편집해서 주는 일이 많아 번거로워 줄이고 싶었음.
 - 퇴근하고 나서 급한 링크공유 요청이 오거나 테스트 하는 일이 발생할 때 핸드폰에는 저장 된 URL이 없을때 메일함으로 들어가야 하는 번거로움이 있었음.
 
+![링크 시연 화면](./src/assets/img/dimensionlink-site-demonstration.gif "링크 시연 화면")
+
 ## 사용법
 1. 아래 사이트로 접속 
 > 사이트 주소: https://dimensionlink.netlify.com/ 
