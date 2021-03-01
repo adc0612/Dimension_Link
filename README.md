@@ -23,7 +23,6 @@
 
 ## 기술
 - Vue.js 2.6.11
-- Vue Router
 - Vuex
 - vue-clipboards
 - vue-select
