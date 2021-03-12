@@ -27,7 +27,6 @@
 - vue-clipboards
 - vue-select
 
-
 ## 개발 환경
 
 - [Chrome](https://www.google.com/intl/ko/chrome/)
